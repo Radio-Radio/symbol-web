@@ -1,25 +1,4 @@
-import LinkButton from '@/components/atom/LinkButton';
-import MainBackground from '@/components/atom/MainBackground';
-import Footer from '@/components/moleculs/Footer';
-import FunctionsPresens from '@/components/moleculs/FunctionsPresens';
-import MediaCard from '@/components/moleculs/MediaCard';
-import MediaCardWide from '@/components/moleculs/MediaCardWide';
-import { findNewsRelease } from '@/services/StrapiService';
-import { NewsReleaseFindResponse } from '@/types/StrapiModel';
-import ButtonBase from '@mui/material/ButtonBase';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Link from 'next/link';
-import { useTheme } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import Image from 'next/image';
-import { IoChevronForwardOutline } from 'react-icons/io5';
-import { SubTitle } from '../components/atom/Titles';
 import blocks from '@/assets/background/blocks.webp';
-import symbol from '@/assets/logo/symbol.webp';
-import { GetStaticProps, NextPage } from 'next/types';
-import { langSelecter, lang } from '@/languages';
 import cyberSecurityEngineer from '@/assets/background/cyber-security-engineer.webp';
 import digitalWallet from '@/assets/background/digital-wallet.webp';
 import fourLayerNetwork from '@/assets/background/four-layer-network.webp';
@@ -34,11 +13,32 @@ import puzzle from '@/assets/icon/puzzle.webp';
 import ticket from '@/assets/icon/ticket.webp';
 import token from '@/assets/icon/token.webp';
 import nemLogo from '@/assets/logo/nem.webp';
+import symbol from '@/assets/logo/symbol.webp';
+import LinkButton from '@/components/atom/LinkButton';
+import MainBackground from '@/components/atom/MainBackground';
+import Footer from '@/components/moleculs/Footer';
+import FunctionsPresens from '@/components/moleculs/FunctionsPresens';
 import Header from '@/components/moleculs/Header';
-import Toolbar from '@mui/material/Toolbar';
-import { NAVIGATIONS } from '@/types/navigations';
-import Head from 'next/head';
+import MediaCard from '@/components/moleculs/MediaCard';
+import MediaCardWide from '@/components/moleculs/MediaCardWide';
 import NodeStatics from '@/components/moleculs/NodeStatics';
+import { lang, langSelecter } from '@/languages';
+import { findNewsRelease } from '@/services/StrapiService';
+import { NewsReleaseFindResponse } from '@/types/StrapiModel';
+import { NAVIGATIONS } from '@/types/navigations';
+import ButtonBase from '@mui/material/ButtonBase';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { GetServerSideProps, NextPage } from 'next/types';
+import { IoChevronForwardOutline } from 'react-icons/io5';
+import { SubTitle } from '../components/atom/Titles';
 interface Props {
   i18n: lang['index'];
   newsReleases: NewsReleaseFindResponse['data'];
@@ -413,8 +413,15 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
   );
 };
 
-const getStaticProps: GetStaticProps<Props> = async ({ locale, defaultLocale }) => {
+const getServerSideProps: GetServerSideProps<Props> = async ({ locale, defaultLocale }) => {
   const articles = await findNewsRelease(locale, { isIncludeMedia: true });
+  articles.data = articles.data
+    .map((article) => {
+      article.attributes.body = 'deleted';
+      article.attributes.localizations.data = [];
+      return article;
+    })
+    .slice(0, 10);
   return {
     props: {
       locale: locale || defaultLocale || 'en',
@@ -424,5 +431,23 @@ const getStaticProps: GetStaticProps<Props> = async ({ locale, defaultLocale }) 
   };
 };
 
-export { getStaticProps };
+// const getStaticProps: GetStaticProps<Props> = async ({ locale, defaultLocale }) => {
+//   const articles = await findNewsRelease(locale, { isIncludeMedia: true });
+//   articles.data = articles.data
+//     .map((article) => {
+//       article.attributes.body = 'deleted';
+//       article.attributes.localizations.data = [];
+//       return article;
+//     })
+//     .slice(0, 10);
+//   return {
+//     props: {
+//       locale: locale || defaultLocale || 'en',
+//       i18n: langSelecter(locale).index,
+//       newsReleases: articles.data,
+//     },
+//   };
+// };
+
+export { getServerSideProps };
 export default Home;

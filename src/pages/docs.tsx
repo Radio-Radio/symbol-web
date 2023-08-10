@@ -43,7 +43,7 @@ interface Props {
   initLocale?: string;
 }
 
-const Documents: NextPage<Props> = ({ i18n, documentReleases, initLocale }) => {
+const Documents: NextPage<Props> = ({ i18n, documentReleases }) => {
   const router = useRouter();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.between('xs', 'md'));
@@ -299,6 +299,13 @@ const Documents: NextPage<Props> = ({ i18n, documentReleases, initLocale }) => {
 
 const getStaticProps: GetStaticProps<Props> = async ({ locale, defaultLocale }) => {
   const articles = await findDocuments(locale, { isIncludeMedia: true });
+  articles.data = articles.data
+    .map((article) => {
+      article.attributes.body = 'deleted';
+      article.attributes.localizations.data = [];
+      return article;
+    })
+    .slice(0, 20);
   return {
     props: {
       i18n: langSelecter(locale).docs,

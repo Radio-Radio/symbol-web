@@ -21,7 +21,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Head from 'next/head';
 import Image from 'next/image';
-import { GetStaticProps, NextPage } from 'next/types';
+import { GetServerSideProps, NextPage } from 'next/types';
 
 interface Props {
   i18n: lang['news'];
@@ -88,8 +88,15 @@ const News: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
   );
 };
 
-const getStaticProps: GetStaticProps<Props> = async ({ locale, defaultLocale }) => {
+const getServerSideProps: GetServerSideProps<Props> = async ({ locale, defaultLocale, req }) => {
   const articles = await findNewsRelease(locale, { isIncludeMedia: true });
+  articles.data = articles.data
+    .map((article) => {
+      article.attributes.body = 'deleted';
+      article.attributes.localizations.data = [];
+      return article;
+    })
+    .slice(0, 20);
   return {
     props: {
       locale: locale || defaultLocale || 'en',
@@ -99,13 +106,15 @@ const getStaticProps: GetStaticProps<Props> = async ({ locale, defaultLocale }) 
   };
 };
 
-// const getServerSideProps: GetServerSideProps<Props> = async ({ locale, defaultLocale, req }) => {
-//   // logs
-//   const ip = req.headers['x-forwarded-for'];
-//   const userAgent = req.headers['user-agent'];
-//   console.log('access log', { ip, userAgent });
-
+// const getStaticProps: GetStaticProps<Props> = async ({ locale, defaultLocale }) => {
 //   const articles = await findNewsRelease(locale, { isIncludeMedia: true });
+//   articles.data = articles.data
+//     .map((article) => {
+//       article.attributes.body = 'deleted';
+//       article.attributes.localizations.data = [];
+//       return article;
+//     })
+//     .slice(0, 20);
 //   return {
 //     props: {
 //       locale: locale || defaultLocale || 'en',
@@ -115,6 +124,5 @@ const getStaticProps: GetStaticProps<Props> = async ({ locale, defaultLocale }) 
 //   };
 // };
 
-// export { getServerSideProps };
-export { getStaticProps };
+export { getServerSideProps };
 export default News;

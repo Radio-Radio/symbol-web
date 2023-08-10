@@ -164,13 +164,20 @@ const Community: NextPage<Props> = ({ i18n, communityReleases, spaces, locale })
 };
 
 const getServerSideProps: GetServerSideProps<Props> = async ({ locale, defaultLocale }) => {
-  const communityArticles = await findCommunityRelease(locale, { isIncludeMedia: true });
+  const articles = await findCommunityRelease(locale, { isIncludeMedia: true });
+  articles.data = articles.data
+    .map((article) => {
+      article.attributes.body = 'deleted';
+      article.attributes.localizations.data = [];
+      return article;
+    })
+    .slice(0, 20);
   const spaceArticles = await findSpaceRelease(locale, { isIncludeMedia: true });
   return {
     props: {
       locale: locale || defaultLocale || 'en',
       i18n: langSelecter(locale).community,
-      communityReleases: communityArticles.data,
+      communityReleases: articles.data,
       spaces: spaceArticles.data,
     },
   };

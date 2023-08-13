@@ -121,7 +121,7 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
               </SubTitle>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={6} style={{ display: 'flex', justifyContent: 'center' }}>
-                  <Image height={300} width={300} alt='nem logo ネム ロゴ' src={nemLogo} />
+                  <Image height={300} width={300} alt='nem logo ネム ロゴ' src={nemLogo} style={{ overflow: 'clip' }} />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
                   <Typography variant='subtitle1' style={{ marginBottom: '2rem' }}>
@@ -250,7 +250,12 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={6}>
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Image width={400} alt='symbol sdk description' src={serverInstall} style={{ height: 'auto' }} />
+                    <Image
+                      width={400}
+                      alt='symbol sdk description'
+                      src={serverInstall}
+                      style={{ height: 'auto', overflow: 'hidden' }}
+                    />
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -419,7 +424,13 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
                   alignItems: matches ? 'center' : undefined,
                 }}
               >
-                <Image src={symbol} alt='symbol シンボル nem logo icon' width={200} height={200} />
+                <Image
+                  src={symbol}
+                  alt='symbol シンボル nem logo icon'
+                  width={200}
+                  height={200}
+                  style={{ overflow: 'hidden' }}
+                />
               </Grid>
             </Grid>
             <hr />

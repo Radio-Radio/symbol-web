@@ -40,10 +40,8 @@ const ItemCard = ({ item, isFocus }: Args): JSX.Element => {
     <Card
       style={{
         width: '100%',
-        maxWidth: '80vw',
         border: `2px solid ${isFocus ? theme.palette.primary.main : theme.palette.background.paper}`,
         minHeight: matches ? '140px' : undefined,
-        height: '100%',
       }}
     >
       <CardContent>
@@ -100,8 +98,8 @@ interface SwitcherArgs {
 
 const Switcher = (props: SwitcherArgs): JSX.Element => {
   return (
-    <div style={{ width: '100%', paddingLeft: '20px', paddingRight: '20px' }}>
-      <Slider centerMode afterChange={props.onClick} infinite speed={500} centerPadding='20px'>
+    <div style={{ width: '100%', paddingLeft: '20px', paddingRight: '20px', marginBottom: '1rem' }}>
+      <Slider dots afterChange={props.onClick} infinite speed={500}>
         {props.items.map((item, index) => (
           <ItemCard key={index} item={item} isFocus={props.currentIndex === index} />
         ))}

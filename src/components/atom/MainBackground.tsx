@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from 'react';
 import backgroundImage from '@/assets/background/header-background.webp';
 import Image from 'next/image';
+import { FC, useEffect, useState } from 'react';
 
 /**
  * Top page background.
@@ -27,10 +27,11 @@ const MainBackground: FC = () => {
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '80vh', zIndex: -1 }}>
       <Image
         fill
-        priority={true}
+        priority={false}
+        loading='lazy'
         alt='symbol シンボル XYM ジム NEM ネム blockchain'
+        placeholder='blur'
         src={backgroundImage}
-        sizes='100vw'
         style={{
           objectFit: 'cover',
           opacity: backgroundOpacity,

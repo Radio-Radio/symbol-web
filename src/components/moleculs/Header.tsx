@@ -1,5 +1,6 @@
-import Image from 'next/image';
+import SymbolLogoDark from '@/assets/logo/symbol-logo-with-dark-text.webp';
 import LocaleSwitcher, { ArticleIdByLanguage } from '@/components/atom/LocaleSwitcher';
+import { NAVIGATIONS } from '@/types/navigations';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -10,9 +11,12 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
+import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import {
   IoChatbubblesSharp,
@@ -22,11 +26,6 @@ import {
   IoMenuOutline,
   IoNewspaperSharp,
 } from 'react-icons/io5';
-import SymbolLogoDark from '@/assets/logo/symbol-logo-with-dark-text.webp';
-import SymbolLogoLight from '@/assets/logo/symbol-logo-with-light-text.webp';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { NAVIGATIONS } from '@/types/navigations';
 
 const SITELINKS = [
   { title: 'Top', link: NAVIGATIONS.HOME, Icon: IoHomeSharp },
@@ -39,7 +38,6 @@ export default function Header(props: { articleIdByLanguage?: ArticleIdByLanguag
   const router = useRouter();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.between('xs', 'md'));
-  const xssMatches = useMediaQuery('@media screen and (min-width:250px)');
   const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
@@ -73,7 +71,15 @@ export default function Header(props: { articleIdByLanguage?: ArticleIdByLanguag
             <>
               <div style={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                 <ButtonBase aria-label='logo' LinkComponent={Link} href='/'>
-                  <Image src={SymbolLogoDark} height={35} width={155} priority alt='Symbol-Logo' />
+                  <Image
+                    src={SymbolLogoDark}
+                    height={35}
+                    width={155}
+                    priority={false}
+                    loading='lazy'
+                    placeholder='blur'
+                    alt='Symbol-Logo'
+                  />
                 </ButtonBase>
               </div>
               {matches || (
@@ -140,9 +146,12 @@ export default function Header(props: { articleIdByLanguage?: ArticleIdByLanguag
           >
             <ButtonBase aria-label='logo' LinkComponent={Link} href={'/'}>
               <Image
-                src={theme.palette.mode === 'dark' ? SymbolLogoLight : SymbolLogoDark}
+                src={SymbolLogoDark}
                 height={35}
                 width={155}
+                priority={false}
+                loading='lazy'
+                placeholder='blur'
                 alt='Symbol-Logo'
               />
             </ButtonBase>

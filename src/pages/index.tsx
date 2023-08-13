@@ -115,7 +115,7 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
           </section>
           {/* 最初の説明セクション */}
           <section>
-            <InViewAnimation direction='right'>
+            <InViewAnimation threshold={0.3} direction='right'>
               <SubTitle align='center' style={{ marginBottom: '15vh' }}>
                 {i18n.history_title1}
               </SubTitle>
@@ -311,7 +311,15 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
                   <Grid item xs={12} md={6} key={index}>
                     <Link href={item.href}>
                       <ButtonBase aria-label={item.title} style={{ width: '100%', height: 250 }}>
-                        <div style={{ width: '100%', backgroundColor: 'white', borderRadius: '10px' }}>
+                        <div
+                          style={{
+                            width: '100%',
+                            backgroundColor: 'white',
+                            borderRadius: '10px',
+                            position: 'relative',
+                            height: 250,
+                          }}
+                        >
                           <Image
                             fill
                             src={item.image}

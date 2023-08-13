@@ -33,7 +33,7 @@ const MainBackground: FC = () => {
         placeholder='blur'
         src={backgroundImage}
         style={{
-          width: undefined,
+          width: '100%',
           objectFit: 'cover',
           opacity: backgroundOpacity,
           WebkitMaskImage: 'linear-gradient(rgb(0,0,0),rgb(0,0,0),rgb(0,0,0),rgba(0,0,0,0))',

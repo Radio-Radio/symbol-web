@@ -1,4 +1,5 @@
 import SymbolLogoDark from '@/assets/logo/symbol-logo-with-dark-text.webp';
+import SymbolLogoLight from '@/assets/logo/symbol-logo-with-light-text.webp';
 import LocaleSwitcher, { ArticleIdByLanguage } from '@/components/atom/LocaleSwitcher';
 import { NAVIGATIONS } from '@/types/navigations';
 import AppBar from '@mui/material/AppBar';
@@ -146,7 +147,7 @@ export default function Header(props: { articleIdByLanguage?: ArticleIdByLanguag
           >
             <ButtonBase aria-label='logo' LinkComponent={Link} href={'/'}>
               <Image
-                src={SymbolLogoDark}
+                src={SymbolLogoLight}
                 height={35}
                 width={155}
                 priority={false}

@@ -1,5 +1,8 @@
+import TomatinaMosaicCenterImage from '@/assets/events/tomatina/mosaic-center.webp';
 import PasomiTomatoImage from '@/assets/events/tomatina/pasomi-tomato.webp';
 import TomatinaTwitterHeader from '@/assets/events/tomatina/symbol-tomatina-header.png';
+import TomatinaGraphImage from '@/assets/events/tomatina/tomatina-graph.webp';
+import TomatinaHirobaImage from '@/assets/events/tomatina/tomatina-hiroba.webp';
 import TomatoFaceImage from '@/assets/events/tomatina/tomato-face.png';
 import ThrowTomatoImage from '@/assets/events/tomatina/tomato-icon.webp';
 import TomatoVsPoteto from '@/assets/events/tomatina/tomato-vs-poteto.webp';
@@ -232,20 +235,28 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
               link: 'http://pasomi.net:100/',
             },
             {
-              title: '準備中',
-              description: '準備中',
+              title: 'Tomatina Monitor',
+              description: 'トマティーナの状況をリアルタイムで確認できます',
               date: '2023/07/30',
               locale: 'ja',
-              image: TomatoImage.src,
-              link: '/',
+              image: TomatinaGraphImage.src,
+              link: 'https://ishidad2.github.io/tomatina/',
             },
             {
-              title: '準備中',
-              description: '準備中',
+              title: 'MOSAIC CENTER',
+              description: 'Symbol 上のあらゆる MOSAIC を確認できます',
               date: '2023/07/30',
               locale: 'ja',
-              image: TomatoImage.src,
-              link: '/',
+              image: TomatinaMosaicCenterImage.src,
+              link: 'https://mosaic-center.tk/',
+            },
+            {
+              title: 'トマティーナ広場',
+              description: '（注意：本ゲームはメインネット版です）2022年の名作。トマトを投げて投げて投げまくるゲーム',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: TomatinaHirobaImage.src,
+              link: 'http://feiton.xsrv.jp/Tomato/',
             },
           ].map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>

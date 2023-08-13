@@ -76,7 +76,7 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
   return (
     <>
       <Head>
-        <title>{i18n.meta_page_title}</title>
+        <title>{`${i18n.meta_page_title} | Tomatina`}</title>
         <meta name='description' content={'Symbol トマティーナのイベントページです'} />
         <meta name='twitter:title' content={'Symbol トマティーナ'} />
         <meta name='twitter:description' content={'Symbol トマティーナのイベントページです'} />

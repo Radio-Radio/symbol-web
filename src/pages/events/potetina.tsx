@@ -78,7 +78,7 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
   return (
     <>
       <Head>
-        <title>{i18n.meta_page_title}</title>
+        <title>{`${i18n.meta_page_title} | Potetina`}</title>
         <meta name='description' content={'ポテティーナのイベントページです'} />
         <meta name='twitter:title' content={'ポテティーナ'} />
         <meta name='twitter:description' content={'ポテティーナのイベントページです'} />

@@ -156,6 +156,14 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
               </div>
             </Grid>
           </Grid>
+          <Stack alignItems={'center'} justifyContent={'center'} height={'80svh'}>
+            <iframe
+              src='https://drive.google.com/file/d/1Uw07XST0hZywiNveDm6DXxqU1GbwN1qw/preview'
+              width='640'
+              height='480'
+              allow='autoplay'
+            />
+          </Stack>
         </InViewAnimation>
         <InViewAnimation direction='up' threshold={0.2} style={{ minHeight: '60svh', marginBottom: '5svh' }}>
           <Typography variant='h4' fontWeight={'bold'} gutterBottom>

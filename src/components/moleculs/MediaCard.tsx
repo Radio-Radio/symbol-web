@@ -41,7 +41,7 @@ export default function MediaCard(props: Args): JSX.Element {
       />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
-          {props.title}
+          {props.title.slice(0, 30) + (props.title.length >= 30 ? '...' : '')}
         </Typography>
         <Typography variant='body2' color='text.secondary' align='left' gutterBottom>
           {new Date(props.date).toLocaleDateString(props.locale, { timeZone: 'Asia/Tokyo' })}

@@ -14,6 +14,7 @@ import ticket from '@/assets/icon/ticket.webp';
 import token from '@/assets/icon/token.webp';
 import nemLogo from '@/assets/logo/nem.webp';
 import symbol from '@/assets/logo/symbol.webp';
+import InViewAnimation from '@/components/atom/InViewAnimation';
 import LinkButton from '@/components/atom/LinkButton';
 import MainBackground from '@/components/atom/MainBackground';
 import Footer from '@/components/moleculs/Footer';
@@ -114,22 +115,24 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
           </section>
           {/* 最初の説明セクション */}
           <section>
-            <SubTitle align='center' style={{ marginBottom: '15vh' }}>
-              {i18n.history_title1}
-            </SubTitle>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={12} md={6} style={{ display: 'flex', justifyContent: 'center' }}>
-                <Image height={300} width={300} alt='nem logo ネム ロゴ' src={nemLogo} />
+            <InViewAnimation direction='right'>
+              <SubTitle align='center' style={{ marginBottom: '15vh' }}>
+                {i18n.history_title1}
+              </SubTitle>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={12} md={6} style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Image height={300} width={300} alt='nem logo ネム ロゴ' src={nemLogo} />
+                </Grid>
+                <Grid item xs={12} sm={12} md={6}>
+                  <Typography variant='subtitle1' style={{ marginBottom: '2rem' }}>
+                    {i18n.history_body1}
+                  </Typography>
+                  <LinkButton isNewTab fullWidth href='https://nemproject.github.io/nem-docs/pages/'>
+                    {i18n.history_body1_Button}
+                  </LinkButton>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={12} md={6}>
-                <Typography variant='subtitle1' style={{ marginBottom: '2rem' }}>
-                  {i18n.history_body1}
-                </Typography>
-                <LinkButton isNewTab fullWidth href='https://nemproject.github.io/nem-docs/pages/'>
-                  {i18n.history_body1_Button}
-                </LinkButton>
-              </Grid>
-            </Grid>
+            </InViewAnimation>
           </section>
           {/* 特徴説明セクション */}
           <section>
@@ -192,16 +195,17 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
               },
             ].map((content, i) => {
               return (
-                <MediaCardWide
-                  title={content.title}
-                  description={content.description}
-                  image={content.image}
-                  showMoreLink={content.more}
-                  isShowMore={true}
-                  imageHeight={'60vh'}
-                  style={{ marginBottom: '10vh', minHeight: '60vh' }}
-                  key={i}
-                />
+                <InViewAnimation threshold={0.2} key={i}>
+                  <MediaCardWide
+                    title={content.title}
+                    description={content.description}
+                    image={content.image}
+                    showMoreLink={content.more}
+                    isShowMore={true}
+                    imageHeight={'60vh'}
+                    style={{ marginBottom: '10vh', minHeight: '60vh' }}
+                  />
+                </InViewAnimation>
               );
             })}
           </section>
@@ -212,20 +216,22 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
                 <SubTitle align='center' style={{ marginBottom: '5vh' }}>
                   {i18n.news_title}
                 </SubTitle>
-                <Grid container spacing={5}>
+                <Grid container spacing={5} alignItems={'stretch'}>
                   {newsReleases.slice(0, 10).map((n, i) => {
                     return (
                       <Grid item xs={12} sm={6} md={4} key={i}>
-                        <MediaCard
-                          title={n.attributes.title}
-                          description={n.attributes.description}
-                          date={n.attributes.publishedAt}
-                          locale={locale}
-                          image={`${process.env.NEXT_PUBLIC_API_URL}${n.attributes.headerImage?.data.attributes.url}`}
-                          tweetLink={`${process.env.NEXT_PUBLIC_HOSTING_URL}${NAVIGATIONS.NEWS}/${n.id}`}
-                          link={`news/${n.id}`}
-                          style={{ height: '100%' }}
-                        />
+                        <InViewAnimation threshold={0.2} style={{ height: '100%' }}>
+                          <MediaCard
+                            title={n.attributes.title}
+                            description={n.attributes.description}
+                            date={n.attributes.publishedAt}
+                            locale={locale}
+                            image={`${process.env.NEXT_PUBLIC_API_URL}${n.attributes.headerImage?.data.attributes.url}`}
+                            tweetLink={`${process.env.NEXT_PUBLIC_HOSTING_URL}${NAVIGATIONS.NEWS}/${n.id}`}
+                            link={`news/${n.id}`}
+                            style={{ height: '100%' }}
+                          />
+                        </InViewAnimation>
                       </Grid>
                     );
                   })}
@@ -236,33 +242,40 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
           {/* 簡単に導入できると説明するセクション */}
           <section>
             <div style={{ height: '20vh' }} />
-            <SubTitle align='center' style={{ color: theme.palette.primary.main }}>
-              {i18n.easy_section_title}
-            </SubTitle>
-            <div style={{ height: '10vh' }} />
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={12} md={6}>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <Image width={400} alt='symbol sdk description' src={serverInstall} style={{ height: 'auto' }} />
-                </div>
+            <InViewAnimation threshold={0.2}>
+              <SubTitle align='center' style={{ color: theme.palette.primary.main }}>
+                {i18n.easy_section_title}
+              </SubTitle>
+              <div style={{ height: '10vh' }} />
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={12} md={6}>
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Image width={400} alt='symbol sdk description' src={serverInstall} style={{ height: 'auto' }} />
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={12} md={6}>
+                  <Typography variant='subtitle1' style={{ marginBottom: '1rem' }}>
+                    {i18n.easy_section_body}
+                  </Typography>
+                  <LinkButton
+                    isNewTab
+                    fullWidth
+                    href={i18n.quick_learn_symbol_link}
+                    style={{ marginTop: '2rem', marginBottom: '1rem' }}
+                  >
+                    {i18n.easy_section_button1}
+                  </LinkButton>
+                  <LinkButton
+                    isNewTab
+                    fullWidth
+                    href='https://docs.symbol.dev/sdk.html'
+                    style={{ marginBottom: '1rem' }}
+                  >
+                    {i18n.easy_section_button2}
+                  </LinkButton>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={12} md={6}>
-                <Typography variant='subtitle1' style={{ marginBottom: '1rem' }}>
-                  {i18n.easy_section_body}
-                </Typography>
-                <LinkButton
-                  isNewTab
-                  fullWidth
-                  href={i18n.quick_learn_symbol_link}
-                  style={{ marginTop: '2rem', marginBottom: '1rem' }}
-                >
-                  {i18n.easy_section_button1}
-                </LinkButton>
-                <LinkButton isNewTab fullWidth href='https://docs.symbol.dev/sdk.html' style={{ marginBottom: '1rem' }}>
-                  {i18n.easy_section_button2}
-                </LinkButton>
-              </Grid>
-            </Grid>
+            </InViewAnimation>
           </section>
           {/* SymbolをはじめようSection */}
           <section>

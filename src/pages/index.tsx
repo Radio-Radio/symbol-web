@@ -313,10 +313,10 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
                       <ButtonBase aria-label={item.title} style={{ width: '100%', height: 250 }}>
                         <div style={{ width: '100%', backgroundColor: 'white', borderRadius: '10px' }}>
                           <Image
-                            height={250}
+                            fill
                             src={item.image}
                             alt={item.title}
-                            style={{ width: 'auto', objectFit: 'cover' }}
+                            style={{ objectFit: 'cover', borderRadius: '10px' }}
                           />
                         </div>
                       </ButtonBase>

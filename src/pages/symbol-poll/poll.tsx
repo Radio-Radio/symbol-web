@@ -18,6 +18,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import TextField from '@mui/material/TextField';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { GetStaticProps, NextPage } from 'next/types';
@@ -233,6 +234,12 @@ const SymbolPoll: NextPage<Props> = ({}) => {
 
   return (
     <>
+      <Head>
+        <title>Join a new poll | Symbol Community</title>
+        <meta name='description' content={"Let's all show our will. Let's make our own choices."} />
+        <meta name='twitter:title' content={'Join a new poll | Symbol Community'} />
+        <meta name='twitter:description' content={"Let's all show our will. Let's make our own choices."} />
+      </Head>
       <Header />
       <Toolbar style={{ marginTop: '20px' }} />
       <div style={{ marginBottom: '5vh' }}>

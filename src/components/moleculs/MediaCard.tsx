@@ -61,7 +61,7 @@ export default function MediaCard(props: Args): JSX.Element {
           href={createShareLink()}
           style={{ color: theme.palette.primary.main }}
         >
-          share
+          Share
         </Link>
       </CardContent>
     </Card>

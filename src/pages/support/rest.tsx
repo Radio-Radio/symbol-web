@@ -1,14 +1,14 @@
+import openapi from '@/assets/json/openapi.json';
+import MainBackground from '@/components/atom/MainBackground';
+import Header from '@/components/moleculs/Header';
+import { lang, langSelecter } from '@/languages';
+import Container from '@mui/material/Container';
+import Toolbar from '@mui/material/Toolbar';
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import { createSwaggerSpec } from 'next-swagger-doc';
 import dynamic from 'next/dynamic';
-import 'swagger-ui-react/swagger-ui.css';
-import openapi from '@/assets/json/openapi.json';
 import Head from 'next/head';
-import { lang, langSelecter } from '@/languages';
-import Toolbar from '@mui/material/Toolbar';
-import MainBackground from '@/components/atom/MainBackground';
-import Container from '@mui/material/Container';
-import Header from '@/components/moleculs/Header';
+import 'swagger-ui-react/swagger-ui.css';
 
 const SwaggerUI = dynamic(import('swagger-ui-react'), { ssr: false });
 
@@ -21,10 +21,10 @@ function Rest({ spec, i18n }: Props): JSX.Element {
   return (
     <>
       <Head>
-        <title>{i18n.meta_page_title}</title>
-        <meta name='description' content={i18n.meta_page_description} />
-        <meta name='twitter:title' content={i18n.meta_page_title} />
-        <meta name='twitter:description' content={i18n.meta_page_description} />
+        <title>{`REST Endpoints | ${i18n.meta_page_title}`}</title>
+        <meta name='description' content={'OpenAPI Specification of catapult-rest.'} />
+        <meta name='twitter:title' content={`REST Endpoints | ${i18n.meta_page_title}`} />
+        <meta name='twitter:description' content={'OpenAPI Specification of catapult-rest.'} />
       </Head>
       <Header />
       <Toolbar style={{ marginTop: '20px' }} />

@@ -1,11 +1,14 @@
+import CosignatureBattleGameImage from '@/assets/events/tomatina/cosignature-battle-game.webp';
+import MikunTomatoToken from '@/assets/events/tomatina/mikun-tomato-token.webp';
 import TomatinaMosaicCenterImage from '@/assets/events/tomatina/mosaic-center.webp';
 import PasomiTomatoImage from '@/assets/events/tomatina/pasomi-tomato.webp';
 import TomatinaTwitterHeader from '@/assets/events/tomatina/symbol-tomatina-header.png';
 import TomatinaGraphImage from '@/assets/events/tomatina/tomatina-graph.webp';
 import TomatinaHirobaImage from '@/assets/events/tomatina/tomatina-hiroba.webp';
+import TomatinaOpeningLine from '@/assets/events/tomatina/tomatina-opening-line.webp';
 import TomatoFaceImage from '@/assets/events/tomatina/tomato-face.png';
 import ThrowTomatoImage from '@/assets/events/tomatina/tomato-icon.webp';
-import TomatoVsPoteto from '@/assets/events/tomatina/tomato-vs-poteto.webp';
+import TomatoVsPotato from '@/assets/events/tomatina/tomato-vs-potato.webp';
 import TomatoImage from '@/assets/events/tomatina/tomato.png';
 import InViewAnimation from '@/components/atom/InViewAnimation';
 import LinkButton from '@/components/atom/LinkButton';
@@ -29,13 +32,14 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GetStaticProps, NextPage } from 'next/types';
+import { useState } from 'react';
 
 interface Props {
   i18n: lang['index'];
 }
 
 const FancyTomato = styled('div')({
-  animation: '8s linear 10s infinite alternate fancy_tomato',
+  animation: '10s linear 10s infinite alternate fancy_tomato',
   overflow: 'hidden',
   zIndex: -1,
   opacity: 0,
@@ -44,7 +48,7 @@ const FancyTomato = styled('div')({
       transform: 'translateX(4000px)',
       opacity: 0,
     },
-    '50%': {
+    '40%': {
       transform: 'translateX(4000px)',
       opacity: 1,
     },
@@ -73,12 +77,13 @@ function ThrowTomato(props: { num: number }) {
 }
 
 const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
+  const [draggedElement, setDraggedElement] = useState<string>('');
   return (
     <>
       <Head>
-        <title>{`${i18n.meta_page_title} | Tomatina`}</title>
+        <title>{`Tomatina | ${i18n.meta_page_title}`}</title>
         <meta name='description' content={'Symbol トマティーナのイベントページです'} />
-        <meta name='twitter:title' content={'Symbol トマティーナ'} />
+        <meta name='twitter:title' content={`Tomatina | ${i18n.meta_page_title}`} />
         <meta name='twitter:description' content={'Symbol トマティーナのイベントページです'} />
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:image' content={`${process.env.NEXT_PUBLIC_HOSTING_URL}${TomatinaTwitterHeader.src}`} />
@@ -132,7 +137,6 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
           <Typography variant='h4' fontWeight={'bold'} gutterBottom>
             デジタルトマトをぶつけまくる
           </Typography>
-
           <Grid container spacing={3} alignItems={'center'} style={{ minHeight: '50svh' }}>
             <Grid item xs={12} md={7}>
               <Typography variant='body1' style={{ marginBottom: '1rem' }}>
@@ -158,7 +162,15 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
                   overflow: 'clip',
                 }}
               >
-                <Image src={TomatoFaceImage} height={250} width={250} alt='tomato image' />
+                <Image
+                  src={TomatoFaceImage}
+                  height={250}
+                  width={250}
+                  alt='tomato image'
+                  draggable
+                  onDragStart={() => setDraggedElement('j2dj1ka')}
+                  onDragEnd={() => setDraggedElement('')}
+                />
               </div>
             </Grid>
           </Grid>
@@ -194,32 +206,50 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
           <Typography variant='h4' fontWeight={'bold'} textAlign={'center'} gutterBottom>
             事前準備
           </Typography>
-          <Grid container spacing={3} alignItems={'center'} style={{ minHeight: '50svh' }}>
-            <Grid item xs={12} md={6}>
-              <Typography variant='body1' style={{ marginBottom: '1rem' }}>
-                公開されているゲームは Wallet なしでプレイできるものもありますが、当日慌てない為にも事前に Wallet
-                を作成しておきましょう。
-              </Typography>
+          <Typography variant='body1' style={{ marginBottom: '3rem', marginTop: '3rem' }}>
+            公開されているゲームは Wallet なしでプレイできるものもありますが、当日慌てない為にも事前に Wallet
+            を作成しておきましょう。
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={12} md={6}>
+              <Button
+                variant='outlined'
+                fullWidth
+                LinkComponent={Link}
+                href='https://coin-view.net/symbolwallet-mobile/'
+              >
+                モバイルウォレット-1
+              </Button>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Stack spacing={3}>
-                <Button fullWidth LinkComponent={Link} href='https://coin-view.net/symbolwallet-mobile/'>
-                  モバイルウォレット-1
-                </Button>
-                <Button fullWidth LinkComponent={Link} href='https://www.aemalgorithm.io/aem-plus/main'>
-                  モバイルウォレット-2
-                </Button>
-                <Button fullWidth LinkComponent={Link} href='https://docs.symbol.dev/ja/wallets.html#wallet-desktop'>
-                  デスクトップウォレット
-                </Button>
-                <Button
-                  fullWidth
-                  LinkComponent={Link}
-                  href='https://chrome.google.com/webstore/detail/sss-extension/llildiojemakefgnhhkmiiffonembcan?hl=ja'
-                >
-                  ブラウザ拡張署名ツール
-                </Button>
-              </Stack>
+            <Grid item xs={12} sm={12} md={6}>
+              <Button
+                variant='outlined'
+                fullWidth
+                LinkComponent={Link}
+                href='https://www.aemalgorithm.io/aem-plus/main'
+              >
+                モバイルウォレット-2
+              </Button>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6}>
+              <Button
+                variant='outlined'
+                fullWidth
+                LinkComponent={Link}
+                href='https://docs.symbol.dev/ja/wallets.html#wallet-desktop'
+              >
+                デスクトップウォレット
+              </Button>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6}>
+              <Button
+                fullWidth
+                variant='outlined'
+                LinkComponent={Link}
+                href='https://chrome.google.com/webstore/detail/sss-extension/llildiojemakefgnhhkmiiffonembcan?hl=ja'
+              >
+                ブラウザ拡張署名ツール
+              </Button>
             </Grid>
           </Grid>
         </InViewAnimation>
@@ -232,8 +262,17 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
         <Typography variant='body1' style={{ marginBottom: '1rem' }}>
           現在公開されているゲームを掲載しております。プレイ方法、ルールなどは各ゲームのページをご覧ください。
         </Typography>
-        <Grid container spacing={3} alignItems={'center'}>
+        <Grid container spacing={3} alignItems={'stretch'}>
           {[
+            {
+              title: 'とまとめぐり',
+              description:
+                'まちめぐりアプリを使って日本全国にある道の駅を巡る事で、8/30 に投げる事ができる限定トマトNFTを取得できます！',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: TomatinaOpeningLine.src,
+              link: 'https://machimeguri.app/tomato',
+            },
             {
               title: 'pasomi🍅tomato',
               description: 'トマティーナで使えるトマトを貰えます',
@@ -241,6 +280,14 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
               locale: 'ja',
               image: PasomiTomatoImage.src,
               link: 'http://pasomi.net:100/',
+            },
+            {
+              title: 'mikun🍅tomato',
+              description: 'トマティーナで使えるトマトを貰えます',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: MikunTomatoToken.src,
+              link: 'https://twitter.com/mikunnem/status/1688856900266516480?s=61&t=0B83C_Wk16DPWwLi3DDo1Q',
             },
             {
               title: 'Tomatina Monitor',
@@ -259,6 +306,14 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
               link: 'https://mosaic-center.tk/',
             },
             {
+              title: '転XYM 連署でトマトを投げつけよう！',
+              description: 'ブロックチェーンでマルチシグを組んで協働でモンスターを倒そう！協力型ゲーム',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: CosignatureBattleGameImage.src,
+              link: 'https://twitter.com/subarumansp/status/1693477209124839919?s=61&t=0B83C_Wk16DPWwLi3DDo1Q',
+            },
+            {
               title: 'トマティーナ広場',
               description: '（注意：本ゲームはメインネット版です）2022年の名作。トマトを投げて投げて投げまくるゲーム',
               date: '2023/07/30',
@@ -268,7 +323,7 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
             },
           ].map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <InViewAnimation direction='up' threshold={0.2}>
+              <InViewAnimation direction='up' threshold={0.2} style={{ height: '100%' }}>
                 <MediaCard
                   title={item.title}
                   date={item.date}
@@ -277,6 +332,7 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
                   image={item.image}
                   link={item.link}
                   tweetLink={item.link}
+                  style={{ height: '100%' }}
                 />
               </InViewAnimation>
             </Grid>
@@ -287,34 +343,62 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
           <Typography variant='h4' fontWeight={'bold'} gutterBottom>
             Side Event
           </Typography>
-          <Typography variant='body1' style={{ marginBottom: '1rem' }}>
-            Symbol Tomatina へあの人々が遊びに来る！？ どちらの陣営が多くのトランザクションを発生させるのか...
-            勝負だ！！
-          </Typography>
-          <Stack alignItems='center' justifyContent='center' style={{ height: '60vh' }}>
-            <ButtonBase
-              LinkComponent={Link}
-              href='/events/potetina'
-              style={{ width: '90%', height: '55vh', transition: 'all 0.5s ease' }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.width = '100%';
-                e.currentTarget.style.height = '60vh';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.width = '90%';
-                e.currentTarget.style.height = '55vh';
-              }}
-            >
+          <div style={{ marginTop: '3rem', marginBottom: '3rem' }}>
+            <Typography variant='h6' fontWeight={'bold'} gutterBottom>
+              Tomatina vs Potatina
+            </Typography>
+            <Typography variant='body1' style={{ marginBottom: '1rem' }}>
+              Symbol Tomatina へあの人々が遊びに来る！？ どちらの陣営が多くのトランザクションを発生させるのか...
+              勝負だ！！
+            </Typography>
+            <Stack alignItems='center' justifyContent='center' style={{ height: '60vh' }}>
+              <ButtonBase
+                LinkComponent={Link}
+                href='/events/potatina'
+                style={{ width: '90%', height: '55vh', transition: 'all 0.5s ease' }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.width = '100%';
+                  e.currentTarget.style.height = '60vh';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.width = '90%';
+                  e.currentTarget.style.height = '55vh';
+                }}
+              >
+                <Image
+                  fill
+                  priority={false}
+                  sizes='100%'
+                  alt={'side event tomatina vs potatina'}
+                  src={TomatoVsPotato.src}
+                  style={{ objectFit: 'cover', borderRadius: '10px' }}
+                />
+              </ButtonBase>
+            </Stack>
+          </div>
+          {/* <div style={{ marginTop: '3rem', marginBottom: '3rem' }}>
+            <Typography variant='h6' fontWeight={'bold'} gutterBottom>
+              隠しトマトを見つけよう
+            </Typography>
+            <Typography variant='body1' style={{ marginBottom: '1rem' }}>
+              このページに私はトマトを隠しました。見つける事ができるかな？
+            </Typography>
+            <Stack justifyContent={'center'} alignItems={'center'}>
               <Image
-                fill
-                priority={false}
-                sizes='100%'
-                alt={'side event tomatina vs potetina'}
-                src={TomatoVsPoteto.src}
-                style={{ objectFit: 'cover', borderRadius: '10px' }}
+                onDrop={() => {
+                  if (draggedElement === 'j2dj1ka') {
+                    alert('ヨク... ミツケタネ？...');
+                    window.open('/502.html');
+                  }
+                }}
+                onDragOver={(e) => e.preventDefault()}
+                alt='treasure image'
+                src={TreasureImage}
+                height={250}
+                width={250}
               />
-            </ButtonBase>
-          </Stack>
+            </Stack>
+          </div> */}
         </InViewAnimation>
       </Container>
       <Card style={{ marginTop: '10svh', width: '100%', borderRadius: 0, paddingTop: '5svh', paddingBottom: '5svh' }}>

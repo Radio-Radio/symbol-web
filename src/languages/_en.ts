@@ -49,7 +49,7 @@ const en: typeof ja = {
     quick_learn_symbol_link: "https://learn.en.symbol-community.com/",
   },
   about: {
-    meta_page_title: 'Symbol Community | About Us',
+    meta_page_title: 'About Us | Symbol Community',
     meta_page_description: 'Next Generation Blockchain Symbol Web Site. Be the first to check the latest information. You can also get information about the active community.',
     page_title: 'About Us',
     page_title_description: "Symbol Community WEB has a team that maintains and develops the site",
@@ -99,14 +99,14 @@ If you would like to edit any other pages other than articles, please feel free 
 `
   },
   news: {
-    meta_page_title: 'Symbol Community | News Release',
+    meta_page_title: 'News Release | Symbol Community',
     meta_page_description: 'Next Generation Blockchain Symbol Web Site. Be the first to check the latest information. You can also get information about the active community.',
     page_title: 'News Release',
     page_title_description: "Topics from Symbol/NEM will be posted",
     no_articles: 'No article was found',
   },
   community: {
-    meta_page_title: 'Symbol Community | Community',
+    meta_page_title: 'Community Release | Symbol Community',
     meta_page_description: 'Next Generation Blockchain Symbol Web Site. Be the first to check the latest information. You can also get information about the active community.',
     page_title: 'Community',
     section_title_release: 'News from the Community',
@@ -117,7 +117,7 @@ If you would like to edit any other pages other than articles, please feel free 
     community_introduce_section3: "Blog & Forum"
   },
   docs: {
-    meta_page_title: 'Symbol Community | Document',
+    meta_page_title: 'Document | Symbol Community',
     meta_page_description: 'Next Generation Blockchain Symbol Web Site. Be the first to check the latest information. You can also get information about the active community.',
     page_title: 'document',
     page_title_description: "Learn about Symbol/NEM",

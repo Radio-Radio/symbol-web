@@ -30,7 +30,7 @@ const CommunityArticle: NextPage<Props> = ({ i18n, article, articleIdByLanguage,
   return (
     <>
       <Head>
-        <title>{`${i18n.meta_page_title}: ${article?.attributes.title ?? 'Community'}`}</title>
+        <title>{`${article?.attributes.title ?? 'Community'} | ${i18n.meta_page_title}`}</title>
         <meta name='description' content={removeMarkdownTagFromText(article?.attributes.body).slice(0, 200)} />
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:title' content={article.attributes.title} />

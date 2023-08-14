@@ -1,12 +1,21 @@
-import FoteisonImage from '@/assets/events/potetina/foteison.webp';
-import PotetinaTwitterHeader from '@/assets/events/potetina/potetina-twitter-header.png';
-import TomatoFaceImage from '@/assets/events/potetina/poteto-face.webp';
-import PotetoImage from '@/assets/events/potetina/poteto.webp';
+import AnimalsImage from '@/assets/events/potatina/animals.webp';
+import FoteisonImage from '@/assets/events/potatina/foteison.webp';
+import MaticCrane from '@/assets/events/potatina/matic-crane.webp';
+import PotatinaTwitterHeader from '@/assets/events/potatina/potatina-twitter-header.png';
+import TomatoFaceImage from '@/assets/events/potatina/potato-face.webp';
+import PotatoImage from '@/assets/events/potatina/potato.webp';
+import VeryLongCrime from '@/assets/events/potatina/very-long-crime.webp';
+import VeryLongRun from '@/assets/events/potatina/very-long-run.webp';
+import NewZooGameIcon from '@/assets/events/potatina/you-also-verylong.webp';
+import CosignatureBattleGameImage from '@/assets/events/tomatina/cosignature-battle-game.webp';
+import MikunTomatoToken from '@/assets/events/tomatina/mikun-tomato-token.webp';
 import TomatinaMosaicCenterImage from '@/assets/events/tomatina/mosaic-center.webp';
 import PasomiTomatoImage from '@/assets/events/tomatina/pasomi-tomato.webp';
 import SymbolTomatinaTwitterCard from '@/assets/events/tomatina/symbol-tomatina-header.png';
 import TomatinaGraphImage from '@/assets/events/tomatina/tomatina-graph.webp';
 import TomatinaHirobaImage from '@/assets/events/tomatina/tomatina-hiroba.webp';
+import TomatinaOpeningLine from '@/assets/events/tomatina/tomatina-opening-line.webp';
+import TomatoVsPotato from '@/assets/events/tomatina/tomato-vs-potato.webp';
 import SymbolLogoImage from '@/assets/logo/symbol.webp';
 import InViewAnimation from '@/components/atom/InViewAnimation';
 import LinkButton from '@/components/atom/LinkButton';
@@ -37,25 +46,25 @@ interface Props {
 }
 
 const FancyTomato = styled('div')({
-  animation: '8s linear 10s infinite alternate fancy_tomato',
+  animation: '10s linear 10s infinite alternate fancy_tomato',
   overflow: 'hidden',
   zIndex: -1,
   opacity: 0,
   '@keyframes fancy_tomato': {
     '0%': {
-      transform: 'translateX(4000px)',
+      transform: 'translateX(3000px)',
       opacity: 0,
     },
-    '50%': {
-      transform: 'translateX(4000px)',
+    '40%': {
+      transform: 'translateX(3000px)',
       opacity: 1,
     },
     '60%': {
-      transform: 'translateX(-4000px)',
+      transform: 'translateX(-3000px)',
       opacity: 1,
     },
     '100%': {
-      transform: 'translateX(-4000px)',
+      transform: 'translateX(-3000px)',
       opacity: 0,
     },
   },
@@ -69,21 +78,21 @@ function ThrowTomato(props: { num: number }) {
         animationDelay: `${[1, 2.3, 2.5, 4.0, 6.0, 7.0, 8.8][props.num] * 10}s`,
       }}
     >
-      <Image style={{ zIndex: -1 }} src={PotetoImage.src} alt='throw tomato' width={200} height={200} />
+      <Image style={{ zIndex: -1 }} src={PotatoImage.src} alt='throw tomato' width={200} height={200} />
     </FancyTomato>
   );
 }
 
-const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
+const PotatinaEvent: NextPage<Props> = ({ i18n }) => {
   return (
     <>
       <Head>
-        <title>{`${i18n.meta_page_title} | Potetina`}</title>
+        <title>{`Potatina | ${i18n.meta_page_title}`}</title>
         <meta name='description' content={'ポテティーナのイベントページです'} />
-        <meta name='twitter:title' content={'ポテティーナ'} />
+        <meta name='twitter:title' content={`Potatina | ${i18n.meta_page_title}`} />
         <meta name='twitter:description' content={'ポテティーナのイベントページです'} />
         <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:image' content={`${process.env.NEXT_PUBLIC_HOSTING_URL}${PotetinaTwitterHeader.src}`} />
+        <meta name='twitter:image' content={`${process.env.NEXT_PUBLIC_HOSTING_URL}${PotatinaTwitterHeader.src}`} />
       </Head>
       <Header />
       <Toolbar style={{ marginTop: '20px' }} />
@@ -99,7 +108,7 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
           height: '100svh',
           width: '100%',
           zIndex: -1,
-          backgroundImage: `url(${PotetoImage.src})`,
+          backgroundImage: `url(${PotatoImage.src})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           filter: 'brightness(40%)',
@@ -124,7 +133,7 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
             gutterBottom
             sx={{ fontSize: { xs: '3rem', sm: '6rem', md: '8rem', lg: '10rem' } }}
           >
-            Potetina
+            Potatina
           </Typography>
           <Typography variant='h5' fontWeight='bold' textAlign='center'>
             ポテトとトマトの文化祭
@@ -132,13 +141,15 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
         </div>
         <InViewAnimation direction='up' threshold={0.2} style={{ minHeight: '60svh', marginBottom: '5svh' }}>
           <Typography variant='h4' fontWeight={'bold'} gutterBottom>
-            デジタルポテトを投げまくる
+            ベリロンポテトを投げまくる
           </Typography>
           <Grid container spacing={3} alignItems={'center'}>
             <Grid item xs={12} md={7}>
               <Typography variant='body1' style={{ marginBottom: '1rem' }}>
-                このイベントはブロックチェーン「Symbol」の「Tomatina」というイベントのサイドイベントです。 8月30日は
-                Potetina の日です。公開されるゲームやツールを楽しんだり、Poteto を一斉に投げまくりましょう！
+                このイベントはブロックチェーン「Symbol」の「Tomatina」というイベントのサイドイベントです。 今年は
+                VeryLongAnimals も参戦して、8月30日に「Potatina」を開催します！
+                <br />
+                この日にあわせて公開されるゲームやツールで楽しくトマトをぶつけ合い、一緒に遊んだ仲間やゲーム開発者にX（Twiter）上でのメッセージにベリロンポテトを添えて投げまくりましょう。
               </Typography>
               <LinkButton
                 href='/events/tomatina'
@@ -164,31 +175,32 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
               </div>
             </Grid>
           </Grid>
-          <Stack alignItems={'center'} justifyContent={'center'} height={'80svh'}>
+          <Stack alignItems={'center'} justifyContent={'center'} style={{ marginTop: '2svh', marginBottom: '10svh' }}>
             <iframe
               src='https://drive.google.com/file/d/1Uw07XST0hZywiNveDm6DXxqU1GbwN1qw/preview'
-              width='640'
-              height='480'
               allow='autoplay'
+              style={{ width: '100%', height: 'auto', aspectRatio: '16 / 9' }}
             />
           </Stack>
         </InViewAnimation>
+        <div style={{ height: '5svh' }} />
         <InViewAnimation direction='up' threshold={0.2} style={{ minHeight: '60svh', marginBottom: '5svh' }}>
           <Typography variant='h4' fontWeight={'bold'} gutterBottom>
-            Potetina とは？
+            Potatina とは？
           </Typography>
           <Grid container spacing={1} alignItems={'center'} style={{ marginBottom: '3rem' }}>
             <Grid item xs={12} md={4}>
               <Typography variant='body1' style={{ marginBottom: '1rem' }}>
-                Potetina はゲームを楽しんだり、 Foteison を使って Poteto や Kirari を投げまくるイベントです。例えば...
+                Potatina はゲームを楽しんだり、他のコミュニティのメンバーと交流してPotato
+                を投げまくったりするイベントです。例えば..
               </Typography>
             </Grid>
             <Grid item xs={12} md={8}>
               <List>
                 <ListItem>
                   <ListItemText
-                    primary='Poteto や Kirari を誰かに投げまくる'
-                    secondary='Foteison を使ってどんどん投げましょう。これを機会に他のチェーンの人にも投げてみて Poteto を集める仲間を増やしても...？'
+                    primary='Potato を誰かに投げまくる'
+                    secondary='オンライン上で感謝や評価を表現できるツールの Foteison を使ってどんどん投げましょう。これを機会に他のコミュニティの人にも投げてみて Potato を集める仲間を増やしても...'
                   />
                 </ListItem>
                 <ListItem>
@@ -205,18 +217,157 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
                 </ListItem>
                 <ListItem>
                   <ListItemText
-                    primary='参加賞を貰おう 1'
+                    primary='参加賞を貰おう 1 「オリジナルトマトトークンや Very Potatina Animals Babies のNFTを貰おう」'
                     secondary='ゲームの中にはプレイする事でネイティブ通貨の投げ銭やNFTが貰えるケースもあります。情報はこのサイトで発信します。欲しいものがあったら是非ゲットして下さい！'
                   />
                 </ListItem>
                 <ListItem>
                   <ListItemText
-                    primary='参加賞を貰おう 2'
-                    secondary='本イベント中に参加頂いた人々へ後日 Symbol フルオンチェーンベリロン NFT のプレゼントも企画しています。数に限りがある為、参加者多数の場合は抽選となりますが、この Tomatina vs Potetina 限定の NFT を是非楽しみにしていて下さい'
+                    primary='参加賞を貰おう 2 「Very Potatina Animals のNFTを貰おう」'
+                    secondary='本イベント中に参加頂いた人々へ後日 Symbol フルオンチェーンベリロン NFT のプレゼントも企画しています。数に限りがある為、参加者多数の場合は抽選となりますが、この Tomatina vs Potatina 限定の NFT を是非楽しみにしていて下さい'
                   />
                 </ListItem>
               </List>
             </Grid>
+          </Grid>
+        </InViewAnimation>
+        <div style={{ height: '5svh' }} />
+        <InViewAnimation direction='up' threshold={0.2} style={{ minHeight: '60svh' }}>
+          <Typography variant='h4' fontWeight={'bold'} gutterBottom>
+            Symbol とは？
+          </Typography>
+          <Typography variant='body1' style={{ marginBottom: '3rem', marginTop: '3rem' }}>
+            公開されているゲームは Wallet なしでプレイできるものもありますが、当日慌てない為にも事前に Wallet
+            を作成しておきましょう。
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={12} md={6}>
+              <Button
+                variant='outlined'
+                fullWidth
+                LinkComponent={Link}
+                href='https://coin-view.net/symbolwallet-mobile/'
+              >
+                モバイルウォレット-1
+              </Button>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6}>
+              <Button
+                variant='outlined'
+                fullWidth
+                LinkComponent={Link}
+                href='https://www.aemalgorithm.io/aem-plus/main'
+              >
+                モバイルウォレット-2
+              </Button>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6}>
+              <Button
+                variant='outlined'
+                fullWidth
+                LinkComponent={Link}
+                href='https://docs.symbol.dev/ja/wallets.html#wallet-desktop'
+              >
+                デスクトップウォレット
+              </Button>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6}>
+              <Button
+                fullWidth
+                variant='outlined'
+                LinkComponent={Link}
+                href='https://chrome.google.com/webstore/detail/sss-extension/llildiojemakefgnhhkmiiffonembcan?hl=ja'
+              >
+                ブラウザ拡張署名ツール
+              </Button>
+            </Grid>
+          </Grid>
+          <Grid container spacing={6} alignItems={'center'}>
+            <Grid item xs={12} md={6}>
+              <Typography variant='body1' style={{ marginBottom: '3rem', marginTop: '3rem' }}>
+                Symbol は ブロックチェーン NEM に新たな思想を吹き込んだ L1 パブリックブロックチェーンです。
+                安価な手数料でフルオンチェーン NFT を発行したり、非エンジニアでも扱える簡単なコントラクトが魅力です。
+              </Typography>
+              <LinkButton
+                href='/'
+                ariaLabel='home'
+                isNewTab
+                variant='outlined'
+                sx={{ width: { xs: '100%', sm: '100%', md: '300px' } }}
+              >
+                Symbol について知る
+              </LinkButton>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: '200px',
+                  textAlign: 'center',
+                  marginTop: '5svh',
+                  marginBottom: '5svh',
+                }}
+              >
+                <Image
+                  fill
+                  priority={false}
+                  src={SymbolLogoImage}
+                  sizes='200px'
+                  style={{ objectFit: 'contain' }}
+                  alt='symbol logo image'
+                />
+              </div>
+            </Grid>
+            <Grid item xs={12} style={{ marginBottom: '5svh' }} />
+          </Grid>
+        </InViewAnimation>
+        <InViewAnimation direction='up' threshold={0.2} style={{ minHeight: '60svh' }}>
+          <Typography variant='h4' fontWeight={'bold'} gutterBottom style={{ wordBreak: 'break-all' }}>
+            VeryLongAnimals とは？
+          </Typography>
+          <Typography variant='body1' style={{ marginBottom: '3rem', marginTop: '3rem' }}>
+            だれでも自由に使うことができる顔が長ーい生き物たちの、とっても人気の、デジタルアートのコレクション！[NFT]
+          </Typography>
+          <div style={{ position: 'relative', width: '100%', height: '200px', marginBottom: '3rem' }}>
+            <Image
+              src={AnimalsImage.src}
+              alt='very long animals'
+              fill
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+              }}
+            />
+          </div>
+          <Typography variant='h5' fontWeight={'bold'} gutterBottom style={{ marginBottom: '1rem' }}>
+            詳しく知る
+          </Typography>
+          <Grid container spacing={2}>
+            {[
+              {
+                href: 'https://verylonganimals.com/',
+                text: '公式ホームページ',
+              },
+              {
+                href: 'https://shan-zhong-yu-guisorganization.gitbook.io/vla-book/VeryLongAnimals%20Book',
+                text: '初心者ガイド',
+              },
+              {
+                href: 'https://verylonganimals.com/potatorule/',
+                text: 'ポテトノトリセツ',
+              },
+              {
+                href: 'https://verylonganimals.com/download/',
+                text: '公式素材',
+              },
+            ].map((item, index) => (
+              <Grid item xs={12} sm={12} md={6} key={index}>
+                <LinkButton variant='outlined' fullWidth isNewTab href={item.href}>
+                  {item.text}
+                </LinkButton>
+              </Grid>
+            ))}
           </Grid>
         </InViewAnimation>
         <div style={{ height: '5svh' }} />
@@ -259,15 +410,26 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
               <Typography color='error' variant='body2' style={{ marginBottom: '1rem' }}>
                 注意： ログイン時の認証は twitter を選択して下さい
               </Typography>
-              <LinkButton
-                href='https://twitter.com/foteison'
-                ariaLabel='mosaic link'
-                isNewTab
-                variant='outlined'
-                sx={{ width: { xs: '100%', sm: '100%', md: '300px' } }}
-              >
-                Foteison Twitter
-              </LinkButton>
+              <Stack spacing={2}>
+                <LinkButton
+                  href='https://twitter.com/foteison'
+                  ariaLabel='foteison twitter link'
+                  isNewTab
+                  variant='outlined'
+                  sx={{ width: { xs: '100%', sm: '100%', md: '300px' } }}
+                >
+                  Foteison Twitter
+                </LinkButton>
+                <LinkButton
+                  href='https://chief-tiglon-173.notion.site/FOTEISON-353a420e5ab145e4833a506ccab26ded'
+                  ariaLabel='about foteison link'
+                  isNewTab
+                  variant='outlined'
+                  sx={{ width: { xs: '100%', sm: '100%', md: '300px' } }}
+                >
+                  Foteison について
+                </LinkButton>
+              </Stack>
             </Grid>
             <Grid item xs={12} md={8}>
               <div
@@ -293,101 +455,14 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
             </Grid>
           </Grid>
         </InViewAnimation>
-
-        <InViewAnimation direction='up' threshold={0.2} style={{ minHeight: '60svh', marginBottom: '20svh' }}>
-          <Typography variant='h4' fontWeight={'bold'} gutterBottom>
-            Symbol とは？
-          </Typography>
-          <Grid container spacing={6} alignItems={'center'}>
-            <Grid item xs={12} md={6}>
-              <Typography variant='body1' style={{ marginBottom: '1rem' }}>
-                Symbol は ブロックチェーン NEM に新たな思想を吹き込んだ L1 パブリックブロックチェーンです。
-                安価な手数料でフルオンチェーン NFT を発行したり、非エンジニアでも扱える簡単なコントラクトが魅力です。
-              </Typography>
-              <LinkButton
-                href='/'
-                ariaLabel='home'
-                isNewTab
-                variant='outlined'
-                sx={{ width: { xs: '100%', sm: '100%', md: '300px' } }}
-              >
-                Symbol について知る
-              </LinkButton>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <div
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  height: '200px',
-                  textAlign: 'center',
-                  marginTop: '5svh',
-                  marginBottom: '5svh',
-                }}
-              >
-                <Image
-                  fill
-                  priority={false}
-                  src={SymbolLogoImage}
-                  sizes='200px'
-                  style={{ objectFit: 'contain' }}
-                  alt='symbol logo image'
-                />
-              </div>
-            </Grid>
-            <Grid item xs={12} style={{ marginBottom: '5svh' }} />
-            <Grid item xs={12} md={6}>
-              <Typography variant='body1' style={{ marginBottom: '1rem' }}>
-                公開されているゲームは Wallet なしでプレイできるものもありますが、当日慌てない為にも事前に Wallet
-                を作成しておきましょう。
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Stack spacing={3}>
-                <Button
-                  variant='outlined'
-                  fullWidth
-                  LinkComponent={Link}
-                  href='https://coin-view.net/symbolwallet-mobile/'
-                >
-                  モバイルウォレット-1
-                </Button>
-                <Button
-                  variant='outlined'
-                  fullWidth
-                  LinkComponent={Link}
-                  href='https://www.aemalgorithm.io/aem-plus/main'
-                >
-                  モバイルウォレット-2
-                </Button>
-                <Button
-                  variant='outlined'
-                  fullWidth
-                  LinkComponent={Link}
-                  href='https://docs.symbol.dev/ja/wallets.html#wallet-desktop'
-                >
-                  デスクトップウォレット
-                </Button>
-                <Button
-                  fullWidth
-                  variant='outlined'
-                  LinkComponent={Link}
-                  href='https://chrome.google.com/webstore/detail/sss-extension/llildiojemakefgnhhkmiiffonembcan?hl=ja'
-                >
-                  ブラウザ拡張署名ツール
-                </Button>
-              </Stack>
-            </Grid>
-          </Grid>
-        </InViewAnimation>
         <InViewAnimation direction='right' threshold={0.2} style={{ marginBottom: '10svh' }}>
           <Typography variant='h4' fontWeight={'bold'} gutterBottom>
             FAQ
           </Typography>
-          <Grid container spacing={1} alignItems={'center'} style={{ marginBottom: '3rem' }}>
+          <Grid container spacing={3} alignItems={'center'} style={{ marginBottom: '2rem', marginTop: '1rem' }}>
             <Grid item xs={12} md={4}>
               <Typography variant='body1' style={{ marginBottom: '1rem' }}>
-                Potetina はゲームを楽しんだり、 Foteison を使って Poteto や Kirari を投げまくるイベントです。例えば...
+                このイベントについてのよくある質問です。分からない事があれば是非ご覧下さい。
               </Typography>
             </Grid>
             <Grid item xs={12} md={8}>
@@ -395,7 +470,7 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
                 <ListItem disablePadding>
                   <ListItemText
                     primary='Foteison の使い方が分かりません'
-                    secondary='X Hash Tag #HelpFoteison をつけて当日投稿しましょう。誰かが助けてくれるでしょう'
+                    secondary='X Hash Tag #TomatinaHelp をつけて当日投稿しましょう。誰かが助けてくれるでしょう'
                     style={{ marginBottom: '2rem' }}
                   />
                   <ListItemSecondaryAction style={{ position: 'initial' }}>
@@ -406,7 +481,30 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
                         const body = [
                           encodeURIComponent('[ HELP ]'),
                           encodeURIComponent('Foteison の使い方が分かりません'),
-                          encodeURIComponent('#HelpFoteison #Symbol #Tomatina #Potetina'),
+                          encodeURIComponent('#TomatinaHelp #ベリロン #Symbol #Tomatina #Potatina'),
+                        ].join('%0A%0A');
+                        window.open(`https://twitter.com/intent/tweet?text=${body}`, '_blank');
+                      }}
+                    >
+                      投稿する
+                    </Button>
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemText
+                    primary='ポテトの使い方がわかりません'
+                    secondary='X Hash Tag #ポテ活体験 をつけて当日投稿しましょう。誰かが助けてくれるでしょう'
+                    style={{ marginBottom: '2rem' }}
+                  />
+                  <ListItemSecondaryAction style={{ position: 'initial' }}>
+                    <Button
+                      style={{ maxWidth: '300px', width: '100%' }}
+                      variant='outlined'
+                      onClick={() => {
+                        const body = [
+                          encodeURIComponent('[ HELP ]'),
+                          encodeURIComponent('ポテト の使い方が分かりません'),
+                          encodeURIComponent('#ポテ活体験 #ベリロン #TomatinaHelp #Symbol #Tomatina #Potatina'),
                         ].join('%0A%0A');
                         window.open(`https://twitter.com/intent/tweet?text=${body}`, '_blank');
                       }}
@@ -429,7 +527,7 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
                         const body = [
                           encodeURIComponent('[ HELP ]'),
                           encodeURIComponent('Symbol Wallet の使い方が分かりません'),
-                          encodeURIComponent('#Symbol #Tomatina #Potetina'),
+                          encodeURIComponent('#Symbol #TomatinaHelp #ベリロン #Tomatina #Potatina'),
                         ].join('%0A%0A');
                         window.open(`https://twitter.com/intent/tweet?text=${body}`, '_blank');
                       }}
@@ -467,7 +565,7 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
           </Grid>
         </InViewAnimation>
         <div style={{ height: '5svh' }} />
-        <InViewAnimation direction='right' threshold={0.2} style={{ marginBottom: '10svh' }}>
+        <InViewAnimation direction='right' threshold={0.2}>
           <Typography variant='h4' fontWeight={'bold'} gutterBottom>
             ゲーム楽しもう
           </Typography>
@@ -475,8 +573,17 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
         <Typography variant='body1' style={{ marginBottom: '1rem' }}>
           現在公開されているゲームを掲載しております。プレイ方法、ルールなどは各ゲームのページをご覧ください。
         </Typography>
-        <Grid container spacing={3} alignItems={'center'}>
+        <Grid container spacing={3} alignItems={'stretch'}>
           {[
+            {
+              title: 'とまとめぐり',
+              description:
+                'まちめぐりアプリを使って日本全国にある道の駅を巡る事で、8/30 に投げる事ができる限定トマトNFTを取得できます！',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: TomatinaOpeningLine.src,
+              link: 'https://machimeguri.app/tomato',
+            },
             {
               title: 'pasomi🍅tomato',
               description: 'トマティーナで使えるトマトを貰えます',
@@ -484,6 +591,14 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
               locale: 'ja',
               image: PasomiTomatoImage.src,
               link: 'http://pasomi.net:100/',
+            },
+            {
+              title: 'mikun🍅tomato',
+              description: 'トマティーナで使えるトマトを貰えます',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: MikunTomatoToken.src,
+              link: 'https://twitter.com/mikunnem/status/1688856900266516480?s=61&t=0B83C_Wk16DPWwLi3DDo1Q',
             },
             {
               title: 'Tomatina Monitor',
@@ -502,6 +617,14 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
               link: 'https://mosaic-center.tk/',
             },
             {
+              title: '転XYM 連署でトマトを投げつけよう！',
+              description: 'ブロックチェーンでマルチシグを組んで協働でモンスターを倒そう！協力型ゲーム',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: CosignatureBattleGameImage.src,
+              link: 'https://twitter.com/subarumansp/status/1693477209124839919?s=61&t=0B83C_Wk16DPWwLi3DDo1Q',
+            },
+            {
               title: 'トマティーナ広場',
               description: '（注意：本ゲームはメインネット版です）2022年の名作。トマトを投げて投げて投げまくるゲーム',
               date: '2023/07/30',
@@ -509,9 +632,52 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
               image: TomatinaHirobaImage.src,
               link: 'http://feiton.xsrv.jp/Tomato/',
             },
+            {
+              title: 'Very Long NEWZOO for iOS',
+              description:
+                'ベリロンクソゲーハッカソン作品。ドラッグ操作でフライドポテトを素早くつかみ、リーダーボードの頂点を目指そう！',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: NewZooGameIcon.src,
+              link: 'https://apps.apple.com/jp/app/new-zoo/id1672754668',
+            },
+            {
+              title: 'Very Long NEWZOO for Android',
+              description:
+                'ベリロンクソゲーハッカソン作品。ドラッグ操作でフライドポテトを素早くつかみ、リーダーボードの頂点を目指そう！',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: NewZooGameIcon.src,
+              link: 'https://play.google.com/store/apps/details?id=net.hkukat.newzoo&hl=ja-JP',
+            },
+            {
+              title: 'MATICクレーン',
+              description:
+                'Web ブラウザ上で無料で遊べるクレーンゲーム！クリアするとポイントが貯まって景品が貰えるかも？',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: MaticCrane.src,
+              link: 'https://www.gamearter.com/game/maticcrane/',
+            },
+            {
+              title: 'VeryLongRun',
+              description: '30秒間で遠くまで走ったヤツがエライ！タップでジャンプ、長押しで大ジャンプ！！',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: VeryLongRun.src,
+              link: 'https://run.verylong.games/',
+            },
+            {
+              title: 'ベリロンクライマーβ',
+              description: 'アバターを使って登頂しまくるゲーム！難関を超えろ！！',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: VeryLongCrime.src,
+              link: 'https://twitter.com/eieiei_tw/status/1692168344995307672?s=21&t=JPYFUnQ891A3F69XDG1M1g',
+            },
           ].map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <InViewAnimation direction='up' threshold={0.2}>
+              <InViewAnimation direction='up' threshold={0.2} style={{ height: '100%' }}>
                 <MediaCard
                   title={item.title}
                   date={item.date}
@@ -520,6 +686,7 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
                   image={item.image}
                   link={item.link}
                   tweetLink={item.link}
+                  style={{ height: '100%' }}
                 />
               </InViewAnimation>
             </Grid>
@@ -550,13 +717,75 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
               <Image
                 fill
                 priority={false}
-                alt={'side event tomatina vs potetina'}
+                alt={'side event tomatina vs potatina'}
                 src={SymbolTomatinaTwitterCard.src}
                 sizes='100%'
                 style={{ objectFit: 'cover', borderRadius: '10px' }}
               />
             </ButtonBase>
           </Stack>
+        </InViewAnimation>
+        <div style={{ height: '5svh' }} />
+        <InViewAnimation style={{ width: '100%' }}>
+          <Typography variant='h4' fontWeight={'bold'} gutterBottom>
+            Side Event
+          </Typography>
+          <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+            <Typography variant='h6' fontWeight={'bold'} gutterBottom>
+              Tomatina vs Potatina
+            </Typography>
+            <Typography variant='body1' style={{ marginBottom: '1rem' }}>
+              Symbol Tomatina へあの人々が遊びに来る！？ どちらの陣営が多くのトランザクションを発生させるのか...
+              勝負だ！！
+            </Typography>
+            <Stack alignItems='center' justifyContent='center' style={{ height: '60vh' }}>
+              <ButtonBase
+                LinkComponent={Link}
+                href='/events/potatina'
+                style={{ width: '90%', height: '55vh', transition: 'all 0.5s ease' }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.width = '100%';
+                  e.currentTarget.style.height = '60vh';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.width = '90%';
+                  e.currentTarget.style.height = '55vh';
+                }}
+              >
+                <Image
+                  fill
+                  priority={false}
+                  sizes='100%'
+                  alt={'side event tomatina vs potatina'}
+                  src={TomatoVsPotato.src}
+                  style={{ objectFit: 'cover', borderRadius: '10px' }}
+                />
+              </ButtonBase>
+            </Stack>
+          </div>
+          {/* <div style={{ marginTop: '3rem', marginBottom: '3rem' }}>
+            <Typography variant='h6' fontWeight={'bold'} gutterBottom>
+              隠しトマトを見つけよう
+            </Typography>
+            <Typography variant='body1' style={{ marginBottom: '1rem' }}>
+              このページに私はトマトを隠しました。見つける事ができるかな？
+            </Typography>
+            <Stack justifyContent={'center'} alignItems={'center'}>
+              <Image
+                onDrop={() => {
+                  if (draggedElement === 'j2dj1ka') {
+                    alert('ヨク... ミツケタネ？...');
+                    window.open('/502.html');
+                  }
+                }}
+                onDragOver={(e) => e.preventDefault()}
+                alt='treasure image'
+                src={TreasureImage}
+                height={250}
+                width={250}
+              />
+            </Stack>
+          </div> */}
         </InViewAnimation>
       </Container>
       <Card style={{ marginTop: '10svh', width: '100%', borderRadius: 0, paddingTop: '5svh', paddingBottom: '5svh' }}>
@@ -565,7 +794,7 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
             開催概要
           </Typography>
           <Typography variant='body1' style={{ marginBottom: '1rem' }}>
-            2023年度 Potetina の開催概要を掲載します。（準備中）
+            2023年度 Potatina の開催概要を掲載します。（準備中）
           </Typography>
           <Grid container alignItems={'center'}>
             <Grid item xs={12} md={6}>
@@ -613,4 +842,4 @@ const getStaticProps: GetStaticProps<Props> = async ({ locale, defaultLocale }) 
 };
 
 export { getStaticProps };
-export default PotetinaEvent;
+export default PotatinaEvent;

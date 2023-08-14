@@ -10,6 +10,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Head from 'next/head';
 import Image from 'next/image';
 import { GetStaticProps, NextPage } from 'next/types';
 
@@ -19,6 +20,12 @@ const SymbolPollHome: NextPage = ({}) => {
 
   return (
     <>
+      <Head>
+        <title>Symbol Importance Poll | Symbol Community</title>
+        <meta name='description' content={"Let's all show our will. Let's make our own choices."} />
+        <meta name='twitter:title' content={'Symbol Importance Poll'} />
+        <meta name='twitter:description' content={"Let's all show our will. Let's make our own choices."} />
+      </Head>
       <Header />
       <Toolbar style={{ marginTop: '20px' }} />
       <div style={{ marginBottom: '5vh' }}>

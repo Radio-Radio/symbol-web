@@ -22,6 +22,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import Head from 'next/head';
 import type { GetStaticProps, NextPage } from 'next/types';
 import { useEffect, useState } from 'react';
 import { MdDelete } from 'react-icons/md';
@@ -189,6 +190,12 @@ const CreateSymbolPoll: NextPage = ({}) => {
 
   return (
     <>
+      <Head>
+        <title>Create a new poll | Symbol Community</title>
+        <meta name='description' content={"Let's all show our will. Let's make our own choices."} />
+        <meta name='twitter:title' content={'Create a new poll | Symbol Community'} />
+        <meta name='twitter:description' content={"Let's all show our will. Let's make our own choices."} />
+      </Head>
       <Header />
       <Toolbar style={{ marginTop: '20px' }} />
       <div style={{ marginBottom: '5vh' }}>

@@ -3,7 +3,7 @@ import ja from './_ja';
 // prettier-ignore
 const zh: typeof ja = {
   index: {
-    meta_page_title: 'Blockchain Symbol Community | 启发于 NEM 的公共区块链',
+    meta_page_title: '启发于 NEM 的公共区块链 | Symbol Community',
     meta_page_description: '为 NEM 注入新思想的公共区块链符号的网站。 您可以成为第一个查看最新消息的人。 您还可以获得有关社区的信息。',
     title_message: '欢迎来到 Symbol & NEM。每个人都能随时在第一层区块链上轻松地安装和创建区块！',
     history_title1: '启发于 NEM 的公共区块链',
@@ -49,7 +49,7 @@ const zh: typeof ja = {
     quick_learn_symbol_link: "https://learn.ja.symbol-community.com/",
   },
   about: {
-    meta_page_title: 'Blockchain Symbol Community | About Us',
+    meta_page_title: 'About Us | Symbol Community',
     meta_page_description: '下一代区块链符号网站。 成为第一个检查最新信息的人。 您还可以获得有关活跃社区的信息。',
     page_title: 'About Us',
     page_title_description: "Symbol社区网站有一个维护和开发的团队",
@@ -99,14 +99,14 @@ Symbol/NEM 和使用它的生态系统在不断发展和变化。 为了跟上�
 `
   },
   news: {
-    meta_page_title: 'Blockchain Symbol Community | 新闻发布',
+    meta_page_title: '新闻发布 | Symbol Community',
     meta_page_description: '下一代区块链符号网站。 成为第一个检查最新信息的人。 您还可以获得有关活跃社区的信息。',
     page_title: '新闻发布',
     page_title_description: "来自 Symbol/NEM 的主题将被发布",
     no_articles: '没有找到相关文章',
   },
   community: {
-    meta_page_title: 'Blockchain Symbol Community | 社区',
+    meta_page_title: '社区 | Symbol Community',
     meta_page_description: '下一代区块链符号网站。 成为第一个检查最新信息的人。 您还可以获得有关活跃社区的信息。',
     page_title: '社区',
     section_title_release: '来自社区的消息',
@@ -117,7 +117,7 @@ Symbol/NEM 和使用它的生态系统在不断发展和变化。 为了跟上�
     community_introduce_section3: "博客和论坛"
   },
   docs: {
-    meta_page_title: 'Blockchain Symbol Community | 文档',
+    meta_page_title: '文档 | Symbol Community',
     meta_page_description: '下一代区块链符号网站。 成为第一个检查最新信息的人。 您还可以获得有关活跃社区的信息。',
     page_title: '文档',
     page_title_description: "了解 Symbol/NEM",
@@ -156,7 +156,7 @@ Symbol/NEM 和使用它的生态系统在不断发展和变化。 为了跟上�
     no_articles: '没有找到相关文章',
   },
   common:{
-    meta_page_title: 'Blockchain Symbol Community',
+    meta_page_title: 'Symbol Community',
   }
 };
 

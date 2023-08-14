@@ -3,7 +3,7 @@ import ja from './_ja';
 // prettier-ignore
 const ko: typeof ja = {
   index: {
-    meta_page_title: 'Blockchain Symbol Community',
+    meta_page_title: 'Symbol Community',
     meta_page_description: 'NEM에 새로운 생각을 불어넣는 퍼블릭 블록체인 심볼의 웹사이트. 최신 소식을 가장 먼저 확인하실 수 있습니다. 커뮤니티에 대한 정보도 얻을 수 있습니다.',
     title_message: 'Symbol & NEM에 오신걸 환영합니다. 누구든지, 언제든지 쉽게 설치하여 L1 체인에 블록을 만들어 낼 수 있습니다.',
     history_title1: 'NEM으로 부터 영감을 받은 블록체인',
@@ -49,7 +49,7 @@ const ko: typeof ja = {
     quick_learn_symbol_link: "https://learn.ja.symbol-community.com/",
   },
   about: {
-    meta_page_title: 'Blockchain Symbol Community | About Us',
+    meta_page_title: 'About Us | Symbol Community',
     meta_page_description: '차세대 블록체인 심볼 웹 사이트. 최신 정보를 가장 먼저 확인하세요. 활성 커뮤니티에 대한 정보도 얻을 수 있습니다.',
     page_title: 'About Us',
     page_title_description: "Symbol Community WEB에는 사이트를 유지 및 개발하는 팀이 있습니다.",
@@ -99,14 +99,14 @@ Symbol Community Web에서 기사를 편집하거나 추가하려면 포털에 �
 `
   },
   news: {
-    meta_page_title: 'Blockchain Symbol Community | News Release',
+    meta_page_title: 'News Release | Symbol Community',
     meta_page_description: '차세대 블록체인 심볼 웹 사이트. 최신 정보를 가장 먼저 확인하세요. 활성 커뮤니티에 대한 정보도 얻을 수 있습니다.',
     page_title: 'News Release',
     page_title_description: "Symbol & NEM으로 부터 게시 된 토픽",
     no_articles: '아티클을 찾을 수 없습니다',
   },
   community: {
-    meta_page_title: 'Blockchain Symbol Community | 커뮤니티',
+    meta_page_title: '커뮤니티 | Symbol Community',
     meta_page_description: '차세대 블록체인 심볼 웹 사이트. 최신 정보를 가장 먼저 확인하세요. 활성 커뮤니티에 대한 정보도 얻을 수 있습니다.',
     page_title: '커뮤니티',
     section_title_release: '커뮤니티로 부터 온 뉴스',
@@ -117,7 +117,7 @@ Symbol Community Web에서 기사를 편집하거나 추가하려면 포털에 �
     community_introduce_section3: "블로그 & 포럼",
   },
   docs: {
-    meta_page_title: 'Blockchain Symbol Community | 문서',
+    meta_page_title: '문서 | Symbol Community',
     meta_page_description: '차세대 블록체인 심볼 웹 사이트. 최신 정보를 가장 먼저 확인하세요. 활성 커뮤니티에 대한 정보도 얻을 수 있습니다.',
     page_title: '문서',
     page_title_description: "Symbol & NEM에 대해 배울 수 있는 곳",
@@ -156,7 +156,7 @@ Symbol Community Web에서 기사를 편집하거나 추가하려면 포털에 �
     no_articles: '아티클을 찾을 수 없습니다',
   },
   common:{
-    meta_page_title: 'Blockchain Symbol Community',
+    meta_page_title: 'Symbol Community',
   }
 };
 

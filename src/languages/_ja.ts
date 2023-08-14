@@ -47,7 +47,7 @@ const ja = {
       quick_learn_symbol_link: "https://learn.ja.symbol-community.com/",
   },
   about: {
-    meta_page_title: 'シンボル コミュニティ | チームについて',
+    meta_page_title: 'チームについて | シンボル コミュニティ',
     meta_page_description: 'シンボルコミュニティウェブを運営するチームについて紹介します。',
     page_title: 'About Us',
     page_title_description: "Symbol Community Web は サイトの維持と開発を行うチームがあります",
@@ -97,14 +97,14 @@ Symbol Community Web の記事を編集、追加するには Portal からの操
 `,
   },
   news: {
-    meta_page_title: 'シンボル コミュニティ | ニュース',
+    meta_page_title: 'ニュース | シンボル コミュニティ',
     meta_page_description: 'ブロックチェーンシンボルやネムの最新ニュースをお届けします。',
     page_title: 'ニュースリリース',
     page_title_description: "Symbol/NEM からのトピックスを掲載します",
     no_articles: '記事がありませんでした',
   },
   community: {
-    meta_page_title: 'シンボル コミュニティ | コミュニティ',
+    meta_page_title: 'コミュニティ | シンボル コミュニティ',
     meta_page_description: '次ブロックチェーンシンボルやネムのコミュニティを紹介します',
     page_title: 'コミュニティ',
     page_title_description: "SymbolやNEMの情報を発信しているサイト、アカウントをフォローしよう",
@@ -115,7 +115,7 @@ Symbol Community Web の記事を編集、追加するには Portal からの操
     community_introduce_section3: "ブログ & フォーラム"
   }, 
   docs: {
-    meta_page_title: 'シンボル コミュニティ | ドキュメント',
+    meta_page_title: 'ドキュメント | シンボル コミュニティ',
     meta_page_description: 'ブロックチェーンシンボルやネムに関するドキュメントを掲載しています。',  
     page_title: 'ドキュメント',
     page_title_description: "Symbol/NEM に関する学びを得よう",

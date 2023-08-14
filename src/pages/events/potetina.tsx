@@ -37,7 +37,7 @@ interface Props {
 }
 
 const FancyTomato = styled('div')({
-  animation: '3s linear 10s infinite alternate fancy_tomato',
+  animation: '8s linear 10s infinite alternate fancy_tomato',
   overflow: 'hidden',
   zIndex: -1,
   opacity: 0,
@@ -87,7 +87,7 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
       </Head>
       <Header />
       <Toolbar style={{ marginTop: '20px' }} />
-      <div style={{ position: 'fixed' }}>
+      <div style={{ position: 'fixed', zIndex: -2 }}>
         {new Array(6).fill(0).map((_, i) => (
           <ThrowTomato num={i} key={i} />
         ))}
@@ -151,8 +151,16 @@ const PotetinaEvent: NextPage<Props> = ({ i18n }) => {
               </LinkButton>
             </Grid>
             <Grid item xs={12} md={5}>
-              <div style={{ width: '100%', textAlign: 'center', marginTop: '5svh', marginBottom: '5svh' }}>
-                <Image src={TomatoFaceImage} height={300} width={300} alt='tomato image' />
+              <div
+                style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  marginTop: '5svh',
+                  marginBottom: '5svh',
+                  overflow: 'clip',
+                }}
+              >
+                <Image src={TomatoFaceImage} height={250} width={250} alt='tomato image' />
               </div>
             </Grid>
           </Grid>

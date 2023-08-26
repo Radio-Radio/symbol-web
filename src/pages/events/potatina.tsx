@@ -1,4 +1,5 @@
 import AnimalsImage from '@/assets/events/potatina/animals.webp';
+import BoundshootingImage from '@/assets/events/potatina/boundshooting.webp';
 import FoteisonImage from '@/assets/events/potatina/foteison.webp';
 import MaticCrane from '@/assets/events/potatina/matic-crane.webp';
 import PotatinaTwitterHeader from '@/assets/events/potatina/potatina-twitter-header.png';
@@ -674,6 +675,14 @@ const PotatinaEvent: NextPage<Props> = ({ i18n }) => {
               locale: 'ja',
               image: VeryLongCrime.src,
               link: 'https://twitter.com/eieiei_tw/status/1692168344995307672?s=21&t=JPYFUnQ891A3F69XDG1M1g',
+            },
+            {
+              title: 'Boundshooting',
+              description: 'ブラウザでポテトを投げまくれ！ Akim さんを押し出すシューティングゲーム',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: BoundshootingImage.src,
+              link: 'https://hainibokura.info/verybound/',
             },
           ].map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>

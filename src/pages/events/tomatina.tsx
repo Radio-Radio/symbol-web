@@ -10,6 +10,7 @@ import TomatoFaceImage from '@/assets/events/tomatina/tomato-face.png';
 import ThrowTomatoImage from '@/assets/events/tomatina/tomato-icon.webp';
 import TomatoVsPotato from '@/assets/events/tomatina/tomato-vs-potato.webp';
 import TomatoImage from '@/assets/events/tomatina/tomato.png';
+import WellcomeToSymbolTomatina from '@/assets/events/tomatina/wellcome-to-symbol-tomatina.webp';
 import InViewAnimation from '@/components/atom/InViewAnimation';
 import LinkButton from '@/components/atom/LinkButton';
 import Footer from '@/components/moleculs/Footer';
@@ -288,6 +289,14 @@ const TomatinaEvent: NextPage<Props> = ({ i18n }) => {
               locale: 'ja',
               image: MikunTomatoToken.src,
               link: 'https://twitter.com/mikunnem/status/1688856900266516480?s=61&t=0B83C_Wk16DPWwLi3DDo1Q',
+            },
+            {
+              title: 'Wellcome to Symbol Tomatina',
+              description: 'オリジナルのトマトを作ることができます',
+              date: '2023/07/30',
+              locale: 'ja',
+              image: WellcomeToSymbolTomatina.src,
+              link: 'https://symbol-tomatia.netlify.app/',
             },
             {
               title: 'Tomatina Monitor',

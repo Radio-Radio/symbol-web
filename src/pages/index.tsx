@@ -12,6 +12,7 @@ import gear from '@/assets/icon/gear.webp';
 import puzzle from '@/assets/icon/puzzle.webp';
 import ticket from '@/assets/icon/ticket.webp';
 import token from '@/assets/icon/token.webp';
+import ScrollDownAnimation from '@/assets/json/scroll-down-animation.json';
 import nemLogo from '@/assets/logo/nem.webp';
 import symbol from '@/assets/logo/symbol.webp';
 import InViewAnimation from '@/components/atom/InViewAnimation';
@@ -34,12 +35,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Lottie from "lottie-react";
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GetServerSideProps, NextPage } from 'next/types';
 import { IoChevronForwardOutline } from 'react-icons/io5';
 import { SubTitle } from '../components/atom/Titles';
+
 interface Props {
   i18n: lang['index'];
   newsReleases: NewsReleaseFindResponse['data'];
@@ -68,7 +71,7 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
             <MainBackground />
             <div
               style={{
-                height: '70vh',
+                height: '65vh',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -111,6 +114,9 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
                   </LinkButton>
                 </Grid>
               </Grid>
+            </div>
+            <div style={{width:"100%",display:"flex",justifyContent:"center",opacity:0.4}}>
+            <Lottie animationData={ScrollDownAnimation} />
             </div>
           </section>
           {/* 最初の説明セクション */}

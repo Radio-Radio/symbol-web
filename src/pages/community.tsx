@@ -173,12 +173,13 @@ const getServerSideProps: GetServerSideProps<Props> = async ({ locale, defaultLo
     })
     .slice(0, 20);
   const spaceArticles = await findSpaceRelease(locale, { isIncludeMedia: true });
+  const spaces = [...spaceArticles.data].reverse();
   return {
     props: {
       locale: locale || defaultLocale || 'en',
       i18n: langSelecter(locale).community,
       communityReleases: articles.data,
-      spaces: spaceArticles.data,
+      spaces: spaces,
     },
   };
 };

@@ -329,7 +329,7 @@ const SymbolPoll: NextPage<Props> = ({}) => {
                     variant='body2'
                     style={{
                       marginTop: '1rem',
-                      display: !isPollFinished ? 'block' : 'none',
+                      display: specificMosaicId ? 'block' : 'none',
                     }}
                   >
                     ※&nbsp;この投票では指定モザイクでの総数がカウントされインポータンスは考慮されません。以下から投票数を入力してください。入力値よりも少ない所持数の場合はトランザクションがアナウンスできません。

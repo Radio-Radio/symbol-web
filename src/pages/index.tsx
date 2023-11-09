@@ -257,7 +257,7 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
               <div>
                 <Typography>more...</Typography>
               </div>
-              <div style={{ display: 'flex', gap: '3rem' }}>
+              <div style={{ display: 'flex', gap: '3rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <LinkButton href={NAVIGATIONS.NEWS} style={{ width: '200px' }} variant='outlined'>
                   news
                 </LinkButton>

@@ -20,6 +20,7 @@ interface StrapiFindOptions {
   isIncludeMedia: boolean;
   keywords?: string[];
   page?: number;
+  size?: number;
 }
 
 function generateFilterKeywordQuery(searchParams: URLSearchParams, keywords: string[]): URLSearchParams {
@@ -44,7 +45,8 @@ const initFindRequest = (baseUrl: string, locale?: string, options?: StrapiFindO
   const sp = new URLSearchParams();
   typeof locale === 'string' && sp.append('locale', languageSwitchToStrapi(locale));
   options?.isIncludeMedia && sp.append('populate', '*');
-  options?.page && sp.append('pagination[page]', options.page.toString());
+  sp.append('pagination[page]', options?.page?.toString() || '1');
+  sp.append('pagination[pageSize]', options?.size?.toString() || '30');
   options?.keywords && generateFilterKeywordQuery(sp, options.keywords);
   sp.append(`sort[0]`, 'id:desc');
   ep.search = sp.toString();
@@ -62,6 +64,7 @@ const initFindOneRequest = (baseUrl: string, options?: StrapiFindOptions): strin
 
 export async function findNewsRelease(locale?: string, options?: StrapiFindOptions): Promise<NewsReleaseFindResponse> {
   const ep = initFindRequest([process.env.NEXT_PUBLIC_API_URL, 'api', 'news-releases'].join('/'), locale, options);
+  console.log(ep);
   const response = await fetch(ep, { method: 'GET' });
   if (response.status >= 400) throw new Error(`${findNewsRelease.name}: An error has occurred on the server.`);
   return await response.json();

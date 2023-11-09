@@ -25,7 +25,7 @@ import MediaCard from '@/components/moleculs/MediaCard';
 import MediaCardWide from '@/components/moleculs/MediaCardWide';
 import NodeStatics from '@/components/moleculs/NodeStatics';
 import { lang, langSelecter } from '@/languages';
-import { findNewsRelease } from '@/services/StrapiService';
+import { findCommunityRelease, findNewsRelease } from '@/services/StrapiService';
 import { NewsReleaseFindResponse } from '@/types/StrapiModel';
 import { NAVIGATIONS } from '@/types/navigations';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -35,7 +35,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Lottie from "lottie-react";
+import Lottie from 'lottie-react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -115,8 +115,8 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
                 </Grid>
               </Grid>
             </div>
-            <div style={{width:"100%",display:"flex",justifyContent:"center",opacity:0.4}}>
-            <Lottie animationData={ScrollDownAnimation} />
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center', opacity: 0.4 }}>
+              <Lottie animationData={ScrollDownAnimation} />
             </div>
           </section>
           {/* 最初の説明セクション */}
@@ -223,7 +223,7 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
                   {i18n.news_title}
                 </SubTitle>
                 <Grid container spacing={5} alignItems={'stretch'}>
-                  {newsReleases.slice(0, 10).map((n, i) => {
+                  {newsReleases.map((n, i) => {
                     return (
                       <Grid item xs={12} sm={6} md={4} key={i}>
                         <InViewAnimation threshold={0.2} style={{ height: '100%' }}>
@@ -244,10 +244,32 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
                 </Grid>
               </>
             )}
+            <div
+              style={{
+                marginTop: '5rem',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+                gap: '3rem',
+              }}
+            >
+              <div>
+                <Typography>more...</Typography>
+              </div>
+              <div style={{ display: 'flex', gap: '3rem' }}>
+                <LinkButton href={NAVIGATIONS.NEWS} style={{ width: '200px' }} variant='outlined'>
+                  news
+                </LinkButton>
+                <LinkButton href={NAVIGATIONS.COMMUNITY} style={{ width: '200px' }} variant='outlined'>
+                  community
+                </LinkButton>
+              </div>
+            </div>
           </section>
           {/* 簡単に導入できると説明するセクション */}
           <section>
-            <div style={{ height: '20vh' }} />
+            <div style={{ height: '1vh' }} />
             <InViewAnimation threshold={0.2}>
               <SubTitle align='center' style={{ color: theme.palette.primary.main }}>
                 {i18n.easy_section_title}
@@ -452,40 +474,35 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
 };
 
 const getServerSideProps: GetServerSideProps<Props> = async ({ locale, defaultLocale }) => {
-  const articles = await findNewsRelease(locale, { isIncludeMedia: true });
-  articles.data = articles.data
+  const newsArticles = await findNewsRelease(locale, { isIncludeMedia: true, page: 1, size: 10 });
+  const communityArticles = await findCommunityRelease(locale, { isIncludeMedia: true, page: 1, size: 10 });
+  newsArticles.data = newsArticles.data
     .map((article) => {
       article.attributes.body = 'deleted';
       article.attributes.localizations.data = [];
       return article;
     })
     .slice(0, 10);
+  communityArticles.data = communityArticles.data
+    .map((article) => {
+      article.attributes.body = 'deleted';
+      article.attributes.localizations.data = [];
+      return article;
+    })
+    .slice(0, 10);
+
+  const articles = [...newsArticles.data, ...communityArticles.data].sort(
+    (a, b) => new Date(b.attributes.createdAt).getTime() - new Date(a.attributes.createdAt).getTime()
+  );
+
   return {
     props: {
       locale: locale || defaultLocale || 'en',
       i18n: langSelecter(locale).index,
-      newsReleases: articles.data,
+      newsReleases: articles,
     },
   };
 };
-
-// const getStaticProps: GetStaticProps<Props> = async ({ locale, defaultLocale }) => {
-//   const articles = await findNewsRelease(locale, { isIncludeMedia: true });
-//   articles.data = articles.data
-//     .map((article) => {
-//       article.attributes.body = 'deleted';
-//       article.attributes.localizations.data = [];
-//       return article;
-//     })
-//     .slice(0, 10);
-//   return {
-//     props: {
-//       locale: locale || defaultLocale || 'en',
-//       i18n: langSelecter(locale).index,
-//       newsReleases: articles.data,
-//     },
-//   };
-// };
 
 export { getServerSideProps };
 export default Home;

@@ -13,6 +13,7 @@ import { lang, langSelecter } from '@/languages';
 import { findNewsRelease } from '@/services/StrapiService';
 import { NewsReleaseFindResponse } from '@/types/StrapiModel';
 import { NAVIGATIONS } from '@/types/navigations';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Toolbar from '@mui/material/Toolbar';
@@ -22,6 +23,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Head from 'next/head';
 import Image from 'next/image';
 import { GetServerSideProps, NextPage } from 'next/types';
+import { useState } from 'react';
 
 interface Props {
   i18n: lang['news'];
@@ -32,6 +34,22 @@ interface Props {
 const News: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.between('xs', 'md'));
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [docs, setDocs] = useState<NewsReleaseFindResponse['data']>(newsReleases);
+
+  const handleAddDocuments = () => {
+    const _currentPage = currentPage + 1;
+    findNewsRelease(locale, { isIncludeMedia: true, page: _currentPage }).then((articles) => {
+      articles.data = articles.data.map((article) => {
+        article.attributes.body = 'deleted';
+        article.attributes.localizations.data = [];
+        return article;
+      });
+      setCurrentPage(_currentPage);
+      setDocs([...docs, ...articles.data]);
+      console.log([...docs, ...articles.data]);
+    });
+  };
 
   return (
     <>
@@ -62,12 +80,12 @@ const News: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
           </Grid>
         </Grid>
         <Grid container spacing={5} style={{ marginTop: '5vh' }}>
-          {newsReleases.length === 0 && (
+          {docs.length === 0 && (
             <Grid item xs={12}>
               <Typography align='left'>{i18n.no_articles}</Typography>
             </Grid>
           )}
-          {newsReleases.map((item, index) => (
+          {docs.map((item, index) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
               <MediaCard
                 title={item.attributes.title}
@@ -81,6 +99,13 @@ const News: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
               />
             </Grid>
           ))}
+          <Grid item xs={12}>
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <Button onClick={handleAddDocuments} fullWidth variant='outlined' style={{ maxWidth: '600px' }}>
+                Next
+              </Button>
+            </div>
+          </Grid>
         </Grid>
         <Footer />
       </Container>
@@ -88,15 +113,13 @@ const News: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
   );
 };
 
-const getServerSideProps: GetServerSideProps<Props> = async ({ locale, defaultLocale, req }) => {
-  const articles = await findNewsRelease(locale, { isIncludeMedia: true });
-  articles.data = articles.data
-    .map((article) => {
-      article.attributes.body = 'deleted';
-      article.attributes.localizations.data = [];
-      return article;
-    })
-    .slice(0, 20);
+const getServerSideProps: GetServerSideProps<Props> = async ({ locale, defaultLocale }) => {
+  const articles = await findNewsRelease(locale, { isIncludeMedia: true, page: 1 });
+  articles.data = articles.data.map((article) => {
+    article.attributes.body = 'deleted';
+    article.attributes.localizations.data = [];
+    return article;
+  });
   return {
     props: {
       locale: locale || defaultLocale || 'en',
@@ -105,24 +128,6 @@ const getServerSideProps: GetServerSideProps<Props> = async ({ locale, defaultLo
     },
   };
 };
-
-// const getStaticProps: GetStaticProps<Props> = async ({ locale, defaultLocale }) => {
-//   const articles = await findNewsRelease(locale, { isIncludeMedia: true });
-//   articles.data = articles.data
-//     .map((article) => {
-//       article.attributes.body = 'deleted';
-//       article.attributes.localizations.data = [];
-//       return article;
-//     })
-//     .slice(0, 20);
-//   return {
-//     props: {
-//       locale: locale || defaultLocale || 'en',
-//       i18n: langSelecter(locale).news,
-//       newsReleases: articles.data,
-//     },
-//   };
-// };
 
 export { getServerSideProps };
 export default News;

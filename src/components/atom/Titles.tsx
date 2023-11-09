@@ -35,7 +35,7 @@ export const SubTitle: React.FC<Props> = (props) => {
       component='h2'
       align={props.align ?? 'left'}
       fontWeight='bold'
-      style={{ marginTop: '25vh', overflow: 'hidden', ...props.style }}
+      style={{ marginTop: '15vh', overflow: 'hidden', ...props.style }}
     >
       {props.children}
     </Typography>

@@ -27,6 +27,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GetServerSideProps, NextPage } from 'next/types';
+import { useState } from 'react';
 
 interface Props {
   i18n: lang['community'];
@@ -38,6 +39,22 @@ interface Props {
 const Community: NextPage<Props> = ({ i18n, communityReleases, spaces, locale }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.between('xs', 'md'));
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [docs, setDocs] = useState<CommunityReleaseFindResponse['data']>(communityReleases);
+
+  const handleAddDocuments = () => {
+    const _currentPage = currentPage + 1;
+    findCommunityRelease(locale, { isIncludeMedia: true, page: _currentPage }).then((articles) => {
+      articles.data = articles.data.map((article) => {
+        article.attributes.body = 'deleted';
+        article.attributes.localizations.data = [];
+        return article;
+      });
+      setCurrentPage(_currentPage);
+      setDocs([...docs, ...articles.data]);
+      console.log([...docs, ...articles.data]);
+    });
+  };
 
   return (
     <>
@@ -136,12 +153,12 @@ const Community: NextPage<Props> = ({ i18n, communityReleases, spaces, locale })
           {/* community release list */}
           <PageTitle>{i18n.section_title_release}</PageTitle>
           <Grid container spacing={5} style={{ marginTop: '5vh' }}>
-            {communityReleases.length === 0 && (
+            {docs.length === 0 && (
               <Grid item xs={12}>
                 <Typography align='left'>{i18n.no_articles}</Typography>
               </Grid>
             )}
-            {communityReleases.map((item, index) => (
+            {docs.map((item, index) => (
               <Grid item key={index} xs={12} sm={6} md={4}>
                 <MediaCard
                   title={item.attributes.title}
@@ -155,6 +172,13 @@ const Community: NextPage<Props> = ({ i18n, communityReleases, spaces, locale })
                 />
               </Grid>
             ))}
+            <Grid item xs={12}>
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <Button onClick={handleAddDocuments} fullWidth variant='outlined' style={{ maxWidth: '600px' }}>
+                  Next
+                </Button>
+              </div>
+            </Grid>
           </Grid>
           <Footer />
         </Container>
@@ -164,7 +188,7 @@ const Community: NextPage<Props> = ({ i18n, communityReleases, spaces, locale })
 };
 
 const getServerSideProps: GetServerSideProps<Props> = async ({ locale, defaultLocale }) => {
-  const articles = await findCommunityRelease(locale, { isIncludeMedia: true });
+  const articles = await findCommunityRelease(locale, { isIncludeMedia: true, page: 1 });
   articles.data = articles.data
     .map((article) => {
       article.attributes.body = 'deleted';

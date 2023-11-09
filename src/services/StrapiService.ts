@@ -64,7 +64,6 @@ const initFindOneRequest = (baseUrl: string, options?: StrapiFindOptions): strin
 
 export async function findNewsRelease(locale?: string, options?: StrapiFindOptions): Promise<NewsReleaseFindResponse> {
   const ep = initFindRequest([process.env.NEXT_PUBLIC_API_URL, 'api', 'news-releases'].join('/'), locale, options);
-  console.log(ep);
   const response = await fetch(ep, { method: 'GET' });
   if (response.status >= 400) throw new Error(`${findNewsRelease.name}: An error has occurred on the server.`);
   return await response.json();

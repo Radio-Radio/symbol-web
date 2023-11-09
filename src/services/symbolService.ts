@@ -1,15 +1,15 @@
 import { firstValueFrom } from 'rxjs';
-import { requestSign, setTransaction, getActivePublicKey } from 'sss-module';
+import { getActivePublicKey, requestSign, setTransaction } from 'sss-module';
 import { QRCodeGenerator, TransactionQR } from 'symbol-qr-library';
+import { Convert } from 'symbol-sdk/dist/src/core/format';
+import { TransactionMapping } from 'symbol-sdk/dist/src/core/utils';
 import { RepositoryFactoryHttp } from 'symbol-sdk/dist/src/infrastructure/RepositoryFactoryHttp';
 import { UInt64 } from 'symbol-sdk/dist/src/model/UInt64';
 import { Address } from 'symbol-sdk/dist/src/model/account';
 import { PlainMessage } from 'symbol-sdk/dist/src/model/message/PlainMessage';
 import { Mosaic, MosaicId } from 'symbol-sdk/dist/src/model/mosaic';
 import { NetworkType } from 'symbol-sdk/dist/src/model/network';
-import { Deadline, SignedTransaction, TransferTransaction, Transaction } from 'symbol-sdk/dist/src/model/transaction';
-import { TransactionMapping } from 'symbol-sdk/dist/src/core/utils';
-import { Convert } from 'symbol-sdk/dist/src/core/format';
+import { Deadline, SignedTransaction, Transaction, TransferTransaction } from 'symbol-sdk/dist/src/model/transaction';
 
 interface Network {
   networkType: NetworkType;
@@ -84,8 +84,7 @@ export class SymbolService {
   public async announce(signedTransaction: SignedTransaction) {
     try {
       const transactionRepo = this.repo.createTransactionRepository();
-      const result = await firstValueFrom(transactionRepo.announce(signedTransaction));
-      console.log(result);
+      await firstValueFrom(transactionRepo.announce(signedTransaction));
     } catch (error: any) {
       throw new Error('Cannot announce: ' + error.message);
     }
@@ -129,7 +128,6 @@ export class SymbolService {
 
     if (type === VoteType.SSS) {
       try {
-        console.log(transferTransaction);
         setTransaction(transferTransaction);
         const signedTransaction = await requestSign();
         await this.announce(signedTransaction);

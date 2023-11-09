@@ -36,6 +36,7 @@ const News: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
   const matches = useMediaQuery(theme.breakpoints.between('xs', 'md'));
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [docs, setDocs] = useState<NewsReleaseFindResponse['data']>(newsReleases);
+  const [lastPage, setLastPage] = useState<boolean>(false);
 
   const handleAddDocuments = () => {
     const _currentPage = currentPage + 1;
@@ -45,9 +46,12 @@ const News: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
         article.attributes.localizations.data = [];
         return article;
       });
+
       setCurrentPage(_currentPage);
       setDocs([...docs, ...articles.data]);
-      console.log([...docs, ...articles.data]);
+      if (articles.meta.pagination.pageCount === articles.meta.pagination.page) {
+        setLastPage(true);
+      }
     });
   };
 
@@ -99,13 +103,15 @@ const News: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
               />
             </Grid>
           ))}
-          <Grid item xs={12}>
-            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-              <Button onClick={handleAddDocuments} fullWidth variant='outlined' style={{ maxWidth: '600px' }}>
-                Next
-              </Button>
-            </div>
-          </Grid>
+          {!lastPage && (
+            <Grid item xs={12}>
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <Button onClick={handleAddDocuments} fullWidth variant='outlined' style={{ maxWidth: '600px' }}>
+                  Next
+                </Button>
+              </div>
+            </Grid>
+          )}
         </Grid>
         <Footer />
       </Container>

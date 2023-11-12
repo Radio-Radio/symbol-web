@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import List from '@mui/material/List';
-import Popover from '@mui/material/Popover';
-import Button from '@mui/material/Button';
 import { languages, languageSwitchToStrapi } from '@/languages';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
+import Popover from '@mui/material/Popover';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 export interface ArticleIdByLanguage {
   lang: string;
@@ -76,7 +76,14 @@ export default function LocaleSwitcher(props: Props): JSX.Element {
                 <ListItemButton
                   key={index}
                   style={{ color: 'black', fontWeight: 'bold' }}
-                  onClick={() => router.push({ pathname, query }, undefined, { locale: l, scroll: false })}
+                  onClick={() =>
+                    router
+                      .push({ pathname, query }, undefined, {
+                        locale: l,
+                        scroll: true,
+                      })
+                      .then(() => router.reload())
+                  }
                 >
                   {label}
                 </ListItemButton>

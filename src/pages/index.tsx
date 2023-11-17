@@ -233,8 +233,8 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
                             date={n.attributes.publishedAt}
                             locale={locale}
                             image={`${process.env.NEXT_PUBLIC_API_URL}${n.attributes.headerImage?.data.attributes.url}`}
-                            tweetLink={`${process.env.NEXT_PUBLIC_HOSTING_URL}${NAVIGATIONS.NEWS}/${n.id}`}
-                            link={`news/${n.id}`}
+                            tweetLink={`${process.env.NEXT_PUBLIC_HOSTING_URL}${n.id}`}
+                            link={`${n.id}`}
                             style={{ height: '100%' }}
                           />
                         </InViewAnimation>
@@ -476,20 +476,18 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
 const getServerSideProps: GetServerSideProps<Props> = async ({ locale, defaultLocale }) => {
   const newsArticles = await findNewsRelease(locale, { isIncludeMedia: true, page: 1, size: 10 });
   const communityArticles = await findCommunityRelease(locale, { isIncludeMedia: true, page: 1, size: 10 });
-  newsArticles.data = newsArticles.data
-    .map((article) => {
-      article.attributes.body = 'deleted';
-      article.attributes.localizations.data = [];
-      return article;
-    })
-    .slice(0, 10);
-  communityArticles.data = communityArticles.data
-    .map((article) => {
-      article.attributes.body = 'deleted';
-      article.attributes.localizations.data = [];
-      return article;
-    })
-    .slice(0, 10);
+  newsArticles.data = newsArticles.data.map((article) => {
+    article.attributes.body = 'deleted';
+    article.attributes.localizations.data = [];
+    article.id = `${NAVIGATIONS.NEWS}/${article.id}` as any;
+    return article;
+  });
+  communityArticles.data = communityArticles.data.map((article) => {
+    article.attributes.body = 'deleted';
+    article.attributes.localizations.data = [];
+    article.id = `${NAVIGATIONS.COMMUNITY}/${article.id}` as any;
+    return article;
+  });
 
   const articles = [...newsArticles.data, ...communityArticles.data].sort(
     (a, b) => new Date(b.attributes.createdAt).getTime() - new Date(a.attributes.createdAt).getTime()

@@ -121,7 +121,7 @@ const Home: NextPage<Props> = ({ i18n, newsReleases, locale }) => {
           </section>
           {/* 最初の説明セクション */}
           <section>
-            <InViewAnimation threshold={0.3} direction='right'>
+            <InViewAnimation threshold={0.2} timeout={800} direction='right'>
               <SubTitle align='center' style={{ marginBottom: '15vh' }}>
                 {i18n.history_title1}
               </SubTitle>

@@ -6,6 +6,7 @@ import { useInView } from 'react-intersection-observer';
 interface Props {
   direction?: 'up' | 'down' | 'left' | 'right';
   threshold?: number;
+  timeout?: number;
   style?: React.CSSProperties;
   children: React.ReactNode;
 }
@@ -25,9 +26,9 @@ export default function InViewAnimation(props: Props): JSX.Element {
 
   return (
     <div ref={ref} style={props.style}>
-      <Slide in={isView} direction={props.direction ?? 'up'} timeout={1000} style={{ height: '100%' }}>
+      <Slide in={isView} direction={props.direction ?? 'up'} timeout={props.timeout ?? 1000} style={{ height: '100%' }}>
         <div style={{ height: '100%' }}>
-          <Fade in={isView} timeout={1000} style={{ height: '100%' }}>
+          <Fade in={isView} timeout={props.timeout ?? 1000} style={{ height: '100%' }}>
             <div>{props.children}</div>
           </Fade>
         </div>

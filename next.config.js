@@ -14,6 +14,7 @@ const nextConfig = withPWA({
   i18n: {
     locales: ['en', 'ja', 'ko', 'zh', 'zh-hant-tw'],
     defaultLocale: 'en',
+    localeDetection: false,
   },
   images: {
     domains: ['cms.symbol-community.com'],
